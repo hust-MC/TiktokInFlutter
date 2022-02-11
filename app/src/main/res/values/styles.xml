@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomButtonStyle">
+        <item name="android:shape">@drawable/shape_cart_but</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
