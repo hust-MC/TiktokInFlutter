@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <fragment
+        android:id="@+id/fragment_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bt_me"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <fragment
+        android:id="@+id/fragment_friend"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bt_me"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <fragment
+        android:id="@+id/fragment_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bt_me"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <fragment
+        app:layout_constraintBottom_toTopOf="@id/bt_me"
+        android:id="@+id/fragment_mine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,12 +53,8 @@
 
     <Button
         android:id="@+id/bt_home"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:background="@color/black"
+        style="@style/BottomButtonStyle"
         android:text="首页"
-        android:textColor="@color/white"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,13 +62,9 @@
 
     <Button
         android:id="@+id/bt_friend"
-        android:layout_width="0dp"
 
-        android:layout_height="54dp"
-        android:background="@color/black"
+        style="@style/BottomButtonStyle"
         android:text="朋友"
-        android:textColor="#ff999999"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/bt_home"
@@ -44,13 +72,9 @@
 
     <Button
         android:id="@+id/bt_add"
-        android:layout_width="0dp"
 
-        android:layout_height="54dp"
-        android:background="@color/black"
+        style="@style/BottomButtonStyle"
         android:text="+"
-        android:textColor="#ff999999"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/bt_friend"
@@ -58,12 +82,8 @@
 
     <Button
         android:id="@+id/bt_message"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:background="@color/black"
+        style="@style/BottomButtonStyle"
         android:text="消息"
-        android:textColor="#ff999999"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/bt_add"
@@ -71,12 +91,8 @@
 
     <Button
         android:id="@+id/bt_me"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:background="@color/black"
+        style="@style/BottomButtonStyle"
         android:text="我的"
-        android:textColor="#ff999999"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/bt_message"

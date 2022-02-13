@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
     <style name="BottomButtonStyle">
-        <item name="android:shape">@drawable/shape_cart_but</item>
-        <item name="android:layout_height">25dp</item>
-        <item name="android:layout_width">45dp</item>
-        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@color/black</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ff999999</item>
     </style>
 </resources>
