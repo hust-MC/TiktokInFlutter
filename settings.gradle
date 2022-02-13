@@ -1,2 +1,8 @@
 include ':app'
 rootProject.name = "fluttertik"
+
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir,
+        'tiktok/.android/include_flutter.groovy'
+))
