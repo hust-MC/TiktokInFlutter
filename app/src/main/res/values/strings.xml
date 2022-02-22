@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">fluttertik</string>
+    <string name="same_city">同城</string>
 </resources>
