@@ -7,11 +7,11 @@
     tools:context=".page.HomePageFragment">
 
     <View
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/text_background"
-        android:background="@drawable/home_gradient"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="60dp"
+        android:background="@drawable/home_gradient"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/focus"
@@ -42,17 +42,46 @@
 
     <ImageView
         android:id="@+id/search"
-        style="@style/HomePageImageStyle"
+        style="@style/HomePageTopImageStyle"
         android:layout_marginRight="18dp"
+        android:src="@mipmap/search"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/search"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/scan"
-        style="@style/HomePageImageStyle"
+        style="@style/HomePageTopImageStyle"
         android:layout_marginLeft="18dp"
+        android:src="@mipmap/scan"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/scan"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/unlike"
+        style="@style/HomePageRightImageStyle"
+        android:src="@mipmap/unlike"
+        app:layout_constraintBottom_toTopOf="@id/comment"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/comment"
+        style="@style/HomePageRightImageStyle"
+        android:src="@mipmap/comment"
+        app:layout_constraintBottom_toTopOf="@id/mark"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/mark"
+        style="@style/HomePageRightImageStyle"
+        android:src="@mipmap/unmark"
+        app:layout_constraintBottom_toTopOf="@id/forward"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/forward"
+        style="@style/HomePageRightImageStyle"
+        android:layout_marginBottom="70dp"
+        android:src="@mipmap/forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
