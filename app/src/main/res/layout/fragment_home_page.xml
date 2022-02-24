@@ -56,10 +56,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/unlike"
+    <com.emercy.fluttertik.CircleImageView
+        android:src="@mipmap/avatar"
+        android:layout_marginBottom="23dp"
+        app:layout_constraintLeft_toLeftOf="@id/like"
+        app:layout_constraintBottom_toTopOf="@id/like"
+        app:layout_constraintRight_toRightOf="@id/like"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ToggleButton
+        android:id="@+id/like"
         style="@style/HomePageRightImageStyle"
-        android:src="@mipmap/unlike"
+        android:background="@drawable/like_selector"
         app:layout_constraintBottom_toTopOf="@id/comment"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -70,10 +79,10 @@
         app:layout_constraintBottom_toTopOf="@id/mark"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <ImageView
+    <ToggleButton
         android:id="@+id/mark"
         style="@style/HomePageRightImageStyle"
-        android:src="@mipmap/unmark"
+        android:background="@drawable/mark_selector"
         app:layout_constraintBottom_toTopOf="@id/forward"
         app:layout_constraintRight_toRightOf="parent" />
 
