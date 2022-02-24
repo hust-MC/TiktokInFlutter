@@ -2,8 +2,6 @@ package com.emercy.fluttertik
 
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
@@ -17,7 +15,7 @@ class MainActivity : FragmentActivity() {
     }
 
     private val friendFragment by lazy {
-        FlutterFragment.createDefault()
+        FlutterFragment.withNewEngine().initialRoute("main/friend").build<FlutterFragment>()
     }
 
     private var currentFragment: Fragment = homeFragment
@@ -55,6 +53,5 @@ class MainActivity : FragmentActivity() {
             }
             currentFragment = it
         }
-
     }
 }
