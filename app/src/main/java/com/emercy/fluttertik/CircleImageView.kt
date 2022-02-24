@@ -60,6 +60,4 @@ class CircleImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
         canvas.drawBitmap(bitmap, 0f, 0f, mPaint)
         canvas.restoreToCount(sc)
     }
-
-
 }

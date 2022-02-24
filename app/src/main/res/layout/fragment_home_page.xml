@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".page.HomePageFragment">
 
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <View
         android:id="@+id/text_background"
         android:layout_width="match_parent"

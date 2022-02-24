@@ -4,19 +4,29 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
 import io.flutter.embedding.android.FlutterFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
+
+    private val homeFragment by lazy {
+        HomePageFragment.newInstance()
+    }
+
+    private val friendFragment by lazy {
+        FlutterFragment.createDefault()
+    }
+
+    private var currentFragment: Fragment = homeFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragment = FlutterFragment.createDefault()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.page_home, HomePageFragment.newInstance()).add(R.id.page_friend, fragment)
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, homeFragment)
             .commit()
 
         bt_home.setOnClickListener { showPage(it) }
@@ -26,15 +36,25 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun showPage(view: View) {
-        page_home.visibility = GONE
-        page_friend.visibility = GONE
-        page_message.visibility = GONE
-        page_mine.visibility = GONE
         when (view.id) {
-            bt_home.id -> page_home.visibility = VISIBLE
-            bt_friend.id -> page_friend.visibility = VISIBLE
-            bt_message.id -> page_message.visibility = VISIBLE
-            bt_mine.id -> page_mine.visibility = VISIBLE
+            R.id.bt_home -> {
+                homeFragment
+            }
+            R.id.bt_friend -> {
+                friendFragment
+            }
+            else -> {
+                homeFragment
+            }
+        }.let {
+            if (friendFragment.isAdded) {
+                supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
+            } else {
+                supportFragmentManager.beginTransaction().hide(currentFragment)
+                    .add(R.id.fragment_container, it).commit()
+            }
+            currentFragment = it
         }
+
     }
 }

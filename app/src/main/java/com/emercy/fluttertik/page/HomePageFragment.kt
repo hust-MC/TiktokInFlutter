@@ -7,13 +7,30 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.emercy.fluttertik.R
-import com.emercy.fluttertik.page.HomePageFragment
 import kotlinx.android.synthetic.main.fragment_home_page.*
 
 /**
  * 首页Fragment，首页采用原生编写
  */
-class HomePageFragment private constructor() : Fragment() {
+class HomePageFragment : Fragment() {
+
+    companion object {
+
+        private const val TAG = "HomePageFragment"
+
+        /**
+         * 创建首页Fragment
+         *
+         * @return 首页Fragment
+         */
+        fun newInstance(): HomePageFragment {
+            val fragment = HomePageFragment()
+            val args = Bundle()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -29,21 +46,23 @@ class HomePageFragment private constructor() : Fragment() {
             Log.d(TAG, "mark clicked : $isChecked")
 
         }
+        video.apply {
+            setVideoPath("android.resource://" + context?.packageName + "/" + R.raw.video1)
+            start()
+            setOnPreparedListener {
+                it.start()
+                it.isLooping = true
+            }
+        }
     }
 
-    companion object {
-
-        private const val TAG = "HomePageFragment"
-        /**
-         * 创建首页Fragment
-         *
-         * @return 首页Fragment
-         */
-        fun newInstance(): HomePageFragment {
-            val fragment = HomePageFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        Log.d(TAG, "hide: $hidden")
+        if (hidden) {
+            video.pause()
+        } else {
+            video.start()
         }
     }
 }
