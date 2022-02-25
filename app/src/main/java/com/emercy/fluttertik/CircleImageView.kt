@@ -6,35 +6,36 @@ import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 
-class CircleImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    AppCompatImageView(context, attrs, defStyleAttr) {
+/**
+ * Created by Emercy
+ *
+ * on 2022/2/10.
+ */
+class CircleImageView @JvmOverloads constructor(
+    context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : AppCompatImageView(context!!, attrs, defStyleAttr) {
     private var mSize = 0
-    private var mPaint: Paint = Paint()
-    private var mPorterDuffXfermode: Xfermode
-
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-
-    init {
-        mPaint.isDither = true
-        mPaint.isAntiAlias = true
-        mPorterDuffXfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    private var mPaint: Paint? = null
+    private fun init() {
+        mPaint = Paint()
+        mPaint!!.isDither = true
+        mPaint!!.isAntiAlias = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val width = measuredWidth
         val height = measuredHeight
-        mSize = width.coerceAtMost(height)
-        setMeasuredDimension(mSize, mSize)
+        mSize = width.coerceAtMost(height) //取宽高的最小值
+        setMeasuredDimension(mSize, mSize) //设置CircleImageView为等宽高
     }
 
-    override fun onDraw(canvas: Canvas) {
-        drawable ?: return
+    override fun onDraw(canvas: Canvas) { //获取sourceBitmap，即通过xml或者java设置进来的图片
+        val drawable = drawable ?: return
         val sourceBitmap = (drawable as BitmapDrawable).bitmap
-        if (sourceBitmap != null) {
+        if (sourceBitmap != null) { //对图片进行缩放，以适应控件的大小
             val bitmap = resizeBitmap(sourceBitmap, width, height)
-            drawCircleBitmapByXfermode(canvas, bitmap)
+            drawCircleBitmapByShader(canvas, bitmap) //利用BitmapShader实现
         }
     }
 
@@ -51,13 +52,15 @@ class CircleImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
         return Bitmap.createBitmap(sourceBitmap, 0, 0, width, height, matrix, true)
     }
 
-    private fun drawCircleBitmapByXfermode(canvas: Canvas, bitmap: Bitmap) {
-        val sc: Int = canvas.saveLayer(0f, 0f, width.toFloat(), height.toFloat(), null) //绘制dst层
+    private fun drawCircleBitmapByShader(canvas: Canvas, bitmap: Bitmap) {
+        val shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        mPaint!!.shader = shader
         canvas.drawCircle(
-            mSize.toFloat() / 2, mSize.toFloat() / 2, mSize.toFloat() / 2, mPaint
+            (mSize / 2).toFloat(), (mSize / 2).toFloat(), (mSize / 2).toFloat(), mPaint!!
         )
-        mPaint.xfermode = mPorterDuffXfermode //绘制src层
-        canvas.drawBitmap(bitmap, 0f, 0f, mPaint)
-        canvas.restoreToCount(sc)
+    }
+
+    init {
+        init()
     }
 }
