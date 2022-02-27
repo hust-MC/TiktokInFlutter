@@ -16,7 +16,8 @@ class CircleImageView @JvmOverloads constructor(
 ) : AppCompatImageView(context!!, attrs, defStyleAttr) {
     private var mSize = 0
     private var mPaint: Paint? = null
-    private fun init() {
+
+    init {
         mPaint = Paint()
         mPaint!!.isDither = true
         mPaint!!.isAntiAlias = true
@@ -58,9 +59,5 @@ class CircleImageView @JvmOverloads constructor(
         canvas.drawCircle(
             (mSize / 2).toFloat(), (mSize / 2).toFloat(), (mSize / 2).toFloat(), mPaint!!
         )
-    }
-
-    init {
-        init()
     }
 }

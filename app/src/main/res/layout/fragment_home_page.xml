@@ -1,101 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".page.HomePageFragment">
+    android:layout_height="match_parent">
 
-    <VideoView
-        android:id="@+id/video"
+    <androidx.viewpager2.widget.ViewPager2
+        android:background="@color/black"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <View
-        android:id="@+id/text_background"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/home_gradient"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/focus"
-        style="@style/HomePageButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="关注"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/city"
-        style="@style/HomePageButtonStyle"
-        android:layout_marginRight="30dp"
-        android:text="@string/same_city"
-        app:layout_constraintRight_toLeftOf="@id/focus"
-        app:layout_constraintTop_toTopOf="@id/focus" />
-
-    <TextView
-        android:id="@+id/recommend"
-        style="@style/HomePageButtonStyle"
-        android:layout_marginLeft="30dp"
-        android:text="推荐"
-        app:layout_constraintLeft_toRightOf="@id/focus"
-        app:layout_constraintTop_toTopOf="@id/focus" />
-
-    <ImageView
-        android:id="@+id/search"
-        style="@style/HomePageTopImageStyle"
-        android:layout_marginRight="18dp"
-        android:src="@mipmap/search"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/scan"
-        style="@style/HomePageTopImageStyle"
-        android:layout_marginLeft="18dp"
-        android:src="@mipmap/scan"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.emercy.fluttertik.CircleImageView
-        android:src="@mipmap/avatar"
-        android:layout_marginBottom="23dp"
-        app:layout_constraintLeft_toLeftOf="@id/like"
-        app:layout_constraintBottom_toTopOf="@id/like"
-        app:layout_constraintRight_toRightOf="@id/like"
-        android:layout_width="40dp"
-        android:layout_height="40dp"/>
-
-    <ToggleButton
-        android:id="@+id/like"
-        style="@style/HomePageRightImageStyle"
-        android:background="@drawable/like_selector"
-        app:layout_constraintBottom_toTopOf="@id/comment"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/comment"
-        style="@style/HomePageRightImageStyle"
-        android:src="@mipmap/comment"
-        app:layout_constraintBottom_toTopOf="@id/mark"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ToggleButton
-        android:id="@+id/mark"
-        style="@style/HomePageRightImageStyle"
-        android:background="@drawable/mark_selector"
-        app:layout_constraintBottom_toTopOf="@id/forward"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/forward"
-        style="@style/HomePageRightImageStyle"
-        android:layout_marginBottom="70dp"
-        android:src="@mipmap/forward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
+</FrameLayout>
