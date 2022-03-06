@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.emercy.fluttertik.R
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_focus_page.*
 class FocusFragment : Fragment() {
     companion object {
 
-        private const val TAG = "HomePageFragment"
+        private const val TAG = "FocusFragment"
 
         /**
          * 创建首页Fragment
@@ -28,6 +30,8 @@ class FocusFragment : Fragment() {
             val fragment = FocusFragment()
             val args = Bundle()
             fragment.arguments = args
+            Log.d(TAG, "Create fragment: $fragment")
+
             return fragment
         }
     }
@@ -45,16 +49,34 @@ class FocusFragment : Fragment() {
         }
         mark.setOnCheckedChangeListener { _, isChecked ->
             Log.d(TAG, "mark clicked : $isChecked")
-
         }
         video.apply {
             setVideoPath("android.resource://" + context?.packageName + "/" + R.raw.video1)
-            start()
             setOnPreparedListener {
-                it.start()
                 it.isLooping = true
             }
+            setOnClickListener {
+                if (video.isPlaying) {
+                    video.pause()
+                    play.visibility = VISIBLE
+                } else {
+                    video.start()
+                    play.visibility = GONE
+                }
+            }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause : $this")
+        video.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume : $this")
+        video.start()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

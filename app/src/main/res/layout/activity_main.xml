@@ -35,7 +35,6 @@
 
     <Button
         android:id="@+id/bt_add"
-
         style="@style/BottomButtonStyle"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"

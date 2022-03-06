@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
  * @author Emercy
- * @description
+ * @description 首页Fragment
  * @data 2022/2/25
  */
 class HomePagerAdapter(fragmentActivity: FragmentActivity) :

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
-import com.emercy.fluttertik.page.HomePagerAdapter
 import io.flutter.embedding.android.FlutterFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -46,7 +45,10 @@ class MainActivity : FragmentActivity() {
                 homeFragment
             }
         }.let {
-            if (friendFragment.isAdded) {
+            if (currentFragment == it) {
+                return
+            }
+            if (it.isAdded) {
                 supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
             } else {
                 supportFragmentManager.beginTransaction().hide(currentFragment)
