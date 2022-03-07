@@ -14,6 +14,8 @@ import com.emercy.fluttertik.R
  */
 class FocusAdapter : RecyclerView.Adapter<FocusAdapter.VideoHolder>() {
 
+    private var mAutoPlay = true
+
     class VideoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var video: VideoView = itemView.findViewById(R.id.video)
     }
@@ -22,11 +24,10 @@ class FocusAdapter : RecyclerView.Adapter<FocusAdapter.VideoHolder>() {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.fragment_video_page, parent, false)
         view.findViewById<VideoView>(R.id.video).apply {
-            setVideoPath("android.resource://" + context.packageName + "/" + R.raw.video1)
             setOnPreparedListener {
                 it.isLooping = true
             }
-            setOnClickListener {
+            view.setOnClickListener {
                 if (isPlaying) {
                     pause()
                     view.findViewById<View>(R.id.play).visibility = View.VISIBLE
@@ -39,9 +40,13 @@ class FocusAdapter : RecyclerView.Adapter<FocusAdapter.VideoHolder>() {
         return VideoHolder(view)
     }
 
-    override fun onBindViewHolder(holder: VideoHolder, p1: Int) {
+    override fun onBindViewHolder(holder: VideoHolder, position: Int) {
         holder.video.apply {
-
+            setVideoPath("android.resource://" + context.packageName + "/" + R.raw.video1)
+            if (mAutoPlay && position == 0) {
+                start()
+                mAutoPlay = false
+            }
         }
     }
 

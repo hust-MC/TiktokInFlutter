@@ -37,7 +37,7 @@ class FocusFragment : Fragment() {
         }
     }
 
-    private var mLayoutManager = PagerLayoutManager(context)
+    private var mLayoutManager = VideoLayoutManager(context)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -64,6 +64,5 @@ class FocusFragment : Fragment() {
                 }
             }
         })
-
     }
 }
