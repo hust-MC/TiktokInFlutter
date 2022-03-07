@@ -23,6 +23,5 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view_pager.adapter = HomePagerAdapter(requireActivity())
-        view_pager.offscreenPageLimit = 3
     }
 }

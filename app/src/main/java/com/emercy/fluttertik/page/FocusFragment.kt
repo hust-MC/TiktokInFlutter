@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.VideoView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import com.emercy.fluttertik.R
 import kotlinx.android.synthetic.main.fragment_focus_page.*
 
@@ -36,6 +37,8 @@ class FocusFragment : Fragment() {
         }
     }
 
+    private var mLayoutManager = PagerLayoutManager(context)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -44,48 +47,23 @@ class FocusFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        like.setOnCheckedChangeListener { _, isChecked ->
-            Log.d(TAG, "like clicked : $isChecked")
-        }
-        mark.setOnCheckedChangeListener { _, isChecked ->
-            Log.d(TAG, "mark clicked : $isChecked")
-        }
-        video.apply {
-            setVideoPath("android.resource://" + context?.packageName + "/" + R.raw.video1)
-            setOnPreparedListener {
-                it.isLooping = true
-            }
-            setOnClickListener {
-                if (video.isPlaying) {
-                    video.pause()
-                    play.visibility = VISIBLE
-                } else {
-                    video.start()
-                    play.visibility = GONE
+
+        focus_recycler.layoutManager = mLayoutManager
+        val adapter = FocusAdapter()
+        focus_recycler.adapter = adapter
+        focus_recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                when (newState) {
+                    SCROLL_STATE_IDLE -> {
+                        mLayoutManager.apply {
+                            findViewByPosition(findFirstVisibleItemPosition())?.findViewById<VideoView>(
+                                    R.id.video
+                                )?.start()
+                        }
+                    }
                 }
             }
-        }
-    }
+        })
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause : $this")
-        video.pause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume : $this")
-        video.start()
-    }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        Log.d(TAG, "hide: $hidden")
-        if (hidden) {
-            video.pause()
-        } else {
-            video.start()
-        }
     }
 }
