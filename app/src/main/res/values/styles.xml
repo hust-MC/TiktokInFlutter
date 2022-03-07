@@ -13,9 +13,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">23sp</item>
-        <item name="android:color">#ffd9d9d8</item>
-        <item name="android:shadowColor">#ff858685</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/dim</item>
+        <item name="android:shadowColor">@color/dim_shadow</item>
         <item name="android:shadowDy">5</item>
         <item name="android:shadowRadius">5</item>
     </style>

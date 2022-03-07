@@ -37,7 +37,9 @@ class FocusFragment : Fragment() {
         }
     }
 
-    private var mLayoutManager = VideoLayoutManager(context)
+    private val mLayoutManager = VideoLayoutManager(context)
+    private val mAdapter = FocusAdapter()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,8 +51,7 @@ class FocusFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         focus_recycler.layoutManager = mLayoutManager
-        val adapter = FocusAdapter()
-        focus_recycler.adapter = adapter
+        focus_recycler.adapter = mAdapter
         focus_recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 when (newState) {
@@ -64,5 +65,14 @@ class FocusFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mLayoutManager.apply {
+            findViewByPosition(findFirstVisibleItemPosition())?.findViewById<VideoView>(
+                R.id.video
+            )?.start()
+        }
     }
 }

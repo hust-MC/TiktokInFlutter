@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 
 /**
+ * 用于管理视频列表的滑动
+ *
  * @author Emercy
  * @description 视频布局管理器
  * @data 2022/3/7

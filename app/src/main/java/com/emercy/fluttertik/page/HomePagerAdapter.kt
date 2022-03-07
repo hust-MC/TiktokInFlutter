@@ -15,17 +15,15 @@ class HomePagerAdapter(fragmentActivity: FragmentActivity) :
     private val fragments: SparseArray<Fragment> = SparseArray()
 
     companion object {
-        const val PAGE_HOME = 0
-        const val PAGE_FIND = 1
-        const val PAGE_INDICATOR = 2
-        const val PAGE_OTHERS = 3
+        const val PAGE_CITY = 0
+        const val PAGE_FOCUS = 1
+        const val PAGE_RECOMMEND = 2
     }
 
     init {
-        fragments.put(PAGE_HOME, FocusFragment.newInstance())
-        fragments.put(PAGE_FIND, FocusFragment.newInstance())
-        fragments.put(PAGE_INDICATOR, FocusFragment.newInstance())
-        fragments.put(PAGE_OTHERS, FocusFragment.newInstance())
+        fragments.put(PAGE_CITY, FocusFragment.newInstance())
+        fragments.put(PAGE_FOCUS, FocusFragment.newInstance())
+        fragments.put(PAGE_RECOMMEND, FocusFragment.newInstance())
     }
 
     override fun createFragment(position: Int): Fragment {
