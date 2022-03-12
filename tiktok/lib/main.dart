@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
+import 'message_page.dart';
+import 'mine_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +33,11 @@ class MyApp extends StatelessWidget {
     print('name is : $routeName');
     switch (routeName) {
       case 'main/friend':
-        return FriendPage(title: 'Flutter Demo Home Page');
+        return FriendPage(title: 'Friend Page');
+      case 'main/message':
+        return MessagePage(title: 'Message Page');
+      case 'main/mine':
+        return MinePage(title: 'Mine Page');
       default:
         return FriendPage();
 

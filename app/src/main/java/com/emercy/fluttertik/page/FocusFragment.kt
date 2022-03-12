@@ -56,11 +56,7 @@ class FocusFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 when (newState) {
                     SCROLL_STATE_IDLE -> {
-                        mLayoutManager.apply {
-                            findViewByPosition(findFirstVisibleItemPosition())?.findViewById<VideoView>(
-                                    R.id.video
-                                )?.start()
-                        }
+                        getCurrentVideoView()?.start()
                     }
                 }
             }
@@ -69,10 +65,21 @@ class FocusFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mLayoutManager.apply {
-            findViewByPosition(findFirstVisibleItemPosition())?.findViewById<VideoView>(
-                R.id.video
-            )?.start()
+        getCurrentVideoView()?.start()
+    }
+
+    fun startVideo() {
+        getCurrentVideoView()?.start()
+    }
+
+    fun pauseVideo() {
+        getCurrentVideoView()?.pause()
+    }
+
+    private fun getCurrentVideoView(): VideoView? {
+        with(mLayoutManager) {
+            return findViewByPosition(findFirstVisibleItemPosition())?.findViewById(R.id.video)
         }
     }
+
 }

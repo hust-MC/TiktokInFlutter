@@ -13,11 +13,15 @@ class MainActivity : FragmentActivity() {
     private val homeFragment by lazy {
         HomePageFragment()
     }
-
     private val friendFragment by lazy {
         FlutterFragment.withNewEngine().initialRoute("main/friend").build<FlutterFragment>()
     }
-
+    private val messageFragment by lazy {
+        FlutterFragment.withNewEngine().initialRoute("main/message").build<FlutterFragment>()
+    }
+    private val mineFragment by lazy {
+        FlutterFragment.withNewEngine().initialRoute("main/mine").build<FlutterFragment>()
+    }
     private var currentFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,15 +39,12 @@ class MainActivity : FragmentActivity() {
 
     private fun showPage(view: View) {
         when (view.id) {
-            R.id.bt_home -> {
-                homeFragment
-            }
-            R.id.bt_friend -> {
-                friendFragment
-            }
-            else -> {
-                homeFragment
-            }
+            R.id.bt_home -> homeFragment
+            R.id.bt_friend -> friendFragment
+            R.id.bt_message -> messageFragment
+            R.id.bt_mine -> mineFragment
+            else -> homeFragment
+
         }.let {
             if (currentFragment == it) {
                 return

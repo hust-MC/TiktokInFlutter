@@ -12,7 +12,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  */
 class HomePagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
-    private val fragments: SparseArray<Fragment> = SparseArray()
 
     companion object {
         const val PAGE_CITY = 0
@@ -20,17 +19,28 @@ class HomePagerAdapter(fragmentActivity: FragmentActivity) :
         const val PAGE_RECOMMEND = 2
     }
 
+    private val mFragments: SparseArray<FocusFragment> = SparseArray()
+    var mCurrentIndex = PAGE_FOCUS
+
     init {
-        fragments.put(PAGE_CITY, FocusFragment.newInstance())
-        fragments.put(PAGE_FOCUS, FocusFragment.newInstance())
-        fragments.put(PAGE_RECOMMEND, FocusFragment.newInstance())
+        mFragments.put(PAGE_CITY, FocusFragment.newInstance())
+        mFragments.put(PAGE_FOCUS, FocusFragment.newInstance())
+        mFragments.put(PAGE_RECOMMEND, FocusFragment.newInstance())
     }
 
     override fun createFragment(position: Int): Fragment {
-        return fragments[position]
+        return mFragments[position]
     }
 
     override fun getItemCount(): Int {
-        return fragments.size()
+        return mFragments.size()
+    }
+
+    fun onHiddenChanged(hide: Boolean) {
+        if (hide) {
+            mFragments[mCurrentIndex].pauseVideo()
+        } else {
+            mFragments[mCurrentIndex].startVideo()
+        }
     }
 }
