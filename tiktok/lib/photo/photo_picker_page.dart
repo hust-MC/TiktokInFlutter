@@ -7,7 +7,8 @@ class PhotoPickerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Image.asset(fileUrl), color: Colors.black,);
+    return Container(
+        child: GestureDetector(
+            child: Image.asset(fileUrl), onTap: () => print('MCLOG, ontap'),), color: Colors.black, height: double.infinity, width: double.infinity);
   }
-
 }

@@ -2,7 +2,8 @@ package com.emercy.fluttertik
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
@@ -10,6 +11,10 @@ import io.flutter.embedding.android.FlutterFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
+
+    companion object {
+        const val ENGINE_ID = "engineID"
+    }
 
     private val homeFragment by lazy {
         HomePageFragment()
@@ -21,7 +26,7 @@ class MainActivity : FragmentActivity() {
         FlutterFragment.withNewEngine().initialRoute("main/message").build<FlutterFragment>()
     }
     private val mineFragment by lazy {
-        FlutterFragment.withNewEngine().initialRoute("main/mine").build<FlutterFragment>()
+        FlutterFragmentUtil.createFlutterFragment(this, "mine", "main/mine")
     }
     private var currentFragment: Fragment = homeFragment
 
@@ -58,5 +63,14 @@ class MainActivity : FragmentActivity() {
             }
             currentFragment = it
         }
+    }
+
+    fun hideBottomButton(hide: Boolean) {
+        val visible = if (hide) GONE else VISIBLE
+        bt_home.visibility = visible
+        bt_friend.visibility = visible
+        bt_add.visibility = visible
+        bt_message.visibility = visible
+        bt_mine.visibility = visible
     }
 }

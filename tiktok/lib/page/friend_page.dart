@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FriendPage extends StatefulWidget {
-  FriendPage({Key key, this.title}) : super(key: key);
+  FriendPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

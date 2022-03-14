@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatefulWidget {
-  MessagePage({Key key, this.title}) : super(key: key);
+  MessagePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

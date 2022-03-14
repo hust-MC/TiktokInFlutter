@@ -1,10 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:tiktok/mc_route.dart';
 
-import 'friend_page.dart';
-import 'message_page.dart';
-import 'mine_page.dart';
+import 'page/friend_page.dart';
+import 'page/message_page.dart';
+import 'page/mine_page.dart';
 
 void main() => runApp(MyApp());
 
