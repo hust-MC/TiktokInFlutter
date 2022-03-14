@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'friend_page.dart';
 import 'message_page.dart';
 import 'mine_page.dart';
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       case 'main/mine':
         return MinePage(title: 'Mine Page');
       default:
-        return FriendPage();
+        return FriendPage(title: 'Friend Page');
 
       // case 'friend':
       //   return FriendPage();

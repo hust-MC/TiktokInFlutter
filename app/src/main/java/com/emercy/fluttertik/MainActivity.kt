@@ -2,6 +2,7 @@ package com.emercy.fluttertik
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
