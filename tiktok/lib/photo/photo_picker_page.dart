@@ -11,4 +11,9 @@ class PhotoPickerPage extends StatelessWidget {
         child: GestureDetector(
             child: Image.asset(fileUrl), onTap: () => print('MCLOG, ontap'),), color: Colors.black, height: double.infinity, width: double.infinity);
   }
+
+  @override
+  String toStringShort() {
+    return 'PhotoPickerPage, image file url: $fileUrl';
+  }
 }

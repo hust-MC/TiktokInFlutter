@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/page/friend_page.dart';
+import 'package:tiktok/page/message_page.dart';
+import 'package:tiktok/page/mine_page.dart';
 import 'package:tiktok/photo/photo_picker_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {
-  static const String photo_picker = "/photo_picker";
+  static const String photo_picker = '/photo_picker';
+  static const String mine_page = '/mine';
+  static const String friend_page = '/friend';
+  static const String message_page = '/message';
 
   final List<Page> _pages = [];
 
@@ -63,7 +69,6 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
 
   MaterialPage _createPage(RouteSettings routeSettings) {
     Widget child;
-    print('create page : $routeSettings');
 
     var args = routeSettings.arguments;
     switch (routeSettings.name) {
@@ -73,17 +78,20 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
           url = args['url'] ?? '';
         }
         url = 'asset/image/default_photo.jpg';
-        print('create page : $url');
-
         child = PhotoPickerPage(url);
+        break;
+      case mine_page:
+        child = MinePage();
+        break;
+      case friend_page:
+        child = FriendPage(title: 'title');
+        break;
+      case message_page:
+        child = MessagePage(title: 'title');
         break;
       default:
         child = const Scaffold();
     }
-    print('create page : $child');
-    print('create page : ${Key(routeSettings.name!) as LocalKey}');
-    print('create page : ${routeSettings.name}');
-    print('create page : ${routeSettings.arguments}');
 
     return MaterialPage(
       child: child,

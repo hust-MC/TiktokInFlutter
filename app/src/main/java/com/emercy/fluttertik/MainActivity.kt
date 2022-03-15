@@ -20,13 +20,15 @@ class MainActivity : FragmentActivity() {
         HomePageFragment()
     }
     private val friendFragment by lazy {
-        FlutterFragment.withNewEngine().initialRoute("main/friend").build<FlutterFragment>()
+        FlutterFragmentUtil.createFlutterFragment(this, "friend", "/friend")
+
     }
     private val messageFragment by lazy {
-        FlutterFragment.withNewEngine().initialRoute("main/message").build<FlutterFragment>()
+        FlutterFragmentUtil.createFlutterFragment(this, "message", "/message")
+
     }
     private val mineFragment by lazy {
-        FlutterFragmentUtil.createFlutterFragment(this, "mine", "main/mine")
+        FlutterFragmentUtil.createFlutterFragment(this, "mine", "/mine")
     }
     private var currentFragment: Fragment = homeFragment
 
