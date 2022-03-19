@@ -1,9 +1,7 @@
 package com.emercy.fluttertik
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
-import android.view.View.GONE
 import io.flutter.embedding.android.FlutterFragment
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -53,5 +51,4 @@ object FlutterFragmentUtil {
             }
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.emercy.fluttertik
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
@@ -7,7 +8,6 @@ import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.HomePageFragment
-import io.flutter.embedding.android.FlutterFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
@@ -21,7 +21,6 @@ class MainActivity : FragmentActivity() {
     }
     private val friendFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "friend", "/friend")
-
     }
     private val messageFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "message", "/message")
@@ -43,6 +42,11 @@ class MainActivity : FragmentActivity() {
         bt_friend.setOnClickListener { showPage(it) }
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        currentFragment.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun showPage(view: View) {

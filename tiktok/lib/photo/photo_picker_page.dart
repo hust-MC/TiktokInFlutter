@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok/channel_util.dart';
@@ -42,8 +44,19 @@ class PhotoPickerPage extends StatelessWidget {
                       ),
                     ),
                     onTap: () async {
-                      var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                      print("PICK image: $image");
+                      print("PICK image: click");
+
+                      var pickedFile = await ImagePicker().pickImage(
+                        source: ImageSource.gallery,
+                      );
+                      print("PICK image: ${pickedFile?.path}");
+
+                      File? imageFile;
+                      if (pickedFile != null) {
+                        File imageFile = File(pickedFile.path);
+                      }
+                      print("PICK image: $imageFile");
+
                     }),
               ))
         ]),
