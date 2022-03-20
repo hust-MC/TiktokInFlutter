@@ -50,10 +50,9 @@ class PhotoPickerPage extends StatelessWidget {
 
                       var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
                       result = pickedFile?.path;
-                      if (result == null) {
+                      if (result != null) {
                         router.popRoute(params: result);
-                      } else {
-                        router.popRoute();
+                        ChannelUtil.hideBottomBar(false);
                       }
                     }),
               ))

@@ -41,7 +41,7 @@ object FlutterFragmentUtil {
         MethodChannel(
             flutterEngine.dartExecutor, "CommonChannel"
         ).setMethodCallHandler { call, result ->
-            Log.i(TAG, call.method)
+            Log.i(TAG, "method: ${call.method}, argument: ${call.arguments}")
 
             when (call.method) {
                 HIDE_BOTTOM -> {
