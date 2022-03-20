@@ -6,10 +6,12 @@ import 'package:tiktok/channel_util.dart';
 
 import '../main.dart';
 
+// ignore: must_be_immutable
 class PhotoPickerPage extends StatelessWidget {
   final String fileUrl;
+  String? result;
 
-  const PhotoPickerPage(this.fileUrl);
+  PhotoPickerPage(this.fileUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +48,13 @@ class PhotoPickerPage extends StatelessWidget {
                     onTap: () async {
                       print("PICK image: click");
 
-                      var pickedFile = await ImagePicker().pickImage(
-                        source: ImageSource.gallery,
-                      );
-                      print("PICK image: ${pickedFile?.path}");
-
-                      File? imageFile;
-                      if (pickedFile != null) {
-                        File imageFile = File(pickedFile.path);
+                      var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      result = pickedFile?.path;
+                      if (result == null) {
+                        router.popRoute(params: result);
+                      } else {
+                        router.popRoute();
                       }
-                      print("PICK image: $imageFile");
-
                     }),
               ))
         ]),

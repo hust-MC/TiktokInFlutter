@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tiktok/page/friend_page.dart';
 import 'package:tiktok/page/message_page.dart';
@@ -11,7 +13,11 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String friend_page = '/friend';
   static const String message_page = '/message';
 
+  static const String key_url = 'url';
+
   final List<Page> _pages = [];
+
+  late Completer<Object?> _boolResultCompleter;
 
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -29,7 +35,11 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   Future<void> setNewRoutePath(List<RouteSettings> configuration) async {}
 
   @override
-  Future<bool> popRoute() {
+  Future<bool> popRoute({Object? params}) {
+    if (params != null) {
+      _boolResultCompleter.complete(params);
+    }
+
     if (canPop()) {
       _pages.removeLast();
       notifyListeners();
@@ -53,11 +63,12 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
     }
   }
 
-  void push({required String name, dynamic arguments}) {
-    print('page is : $_pages');
+  Future<Object?> push({required String name, dynamic arguments}) async {
+    _boolResultCompleter = Completer<Object?>();
+
     _pages.add(_createPage(RouteSettings(name: name, arguments: arguments)));
-    print('page is : $_pages');
     notifyListeners();
+    return _boolResultCompleter.future;
   }
 
   void replace({required String name, dynamic arguments}) {

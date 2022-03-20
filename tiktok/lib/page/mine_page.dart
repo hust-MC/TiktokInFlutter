@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok/channel_util.dart';
 import 'package:tiktok/mc_route.dart';
 
 import '../main.dart';
+import '../widget/TImage.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -12,6 +14,19 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  String url = 'asset/image/default_photo.jpg';
+
+  _MinePageState() {
+    SharedPreferences.getInstance().then((sp) {
+      String? fileUrl = sp.getString(MCRouter.key_url);
+      if (fileUrl != null && fileUrl.isNotEmpty) {
+        setState(() {
+          url = fileUrl;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,13 +35,15 @@ class _MinePageState extends State<MinePage> {
           width: double.infinity,
           height: 120,
           child: GestureDetector(
-              child: Image.asset('asset/image/default_photo.jpg', fit: BoxFit.fill),
-              onTap: () {
+              child: TImage(url, fit: BoxFit.cover),
+              onTap: () async {
                 ChannelUtil.hideBottomBar(true);
-                router.push(name: MCRouter.photo_picker);
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                //   return PhotoPickerPage('asset/image/default_photo.jpg');
-                // }));
+                var fileUrl = await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: url});
+                if (fileUrl is String) {
+                  setState(() {
+                    url = fileUrl;
+                  });
+                }
               }),
         )
       ],
