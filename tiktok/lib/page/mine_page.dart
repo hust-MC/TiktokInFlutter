@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok/channel_util.dart';
 import 'package:tiktok/mc_route.dart';
+import 'package:tiktok/widget/text_count.dart';
 
 import '../main.dart';
 import '../widget/TImage.dart';
@@ -59,7 +60,14 @@ class _MinePageState extends State<MinePage> {
                     });
                   }
                 }),
-          )
+          ),
+          SizedBox(height: 3),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            SizedBox(width: 10),
+            TextCount('获赞'),
+            TextCount('关注'),
+            TextCount('粉丝'),
+          ])
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),
@@ -71,7 +79,7 @@ class _MinePageState extends State<MinePage> {
                       await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: _avatarUrl});
                   if (fileUrl is String) {
                     setState(() {
-                      _backgroundUrl = fileUrl;
+                      _avatarUrl = fileUrl;
                     });
 
                     SharedPreferences.getInstance().then((sp) {
