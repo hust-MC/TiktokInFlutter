@@ -84,12 +84,17 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
     var args = routeSettings.arguments;
     switch (routeSettings.name) {
       case photo_picker:
-        String url;
+        String? url;
+        String height = '';
+        String width = '';
+
         if (args is Map<String, String>) {
-          url = args['url'] ?? '';
+          url = args[MCRouter.key_url];
+          height = args["height"] ?? height;
+          width = args["width"] ?? width;
         }
-        url = 'asset/image/default_photo.jpg';
-        child = PhotoPickerPage(url);
+        child = PhotoPickerPage(url ?? 'asset/image/default_photo.jpg',
+            width: double.tryParse(width), height: double.tryParse(height));
         break;
       case mine_page:
         child = MinePage();

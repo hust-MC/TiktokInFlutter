@@ -3,15 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok/channel_util.dart';
+import 'package:tiktok/widget/TImage.dart';
 
 import '../main.dart';
 
 // ignore: must_be_immutable
 class PhotoPickerPage extends StatelessWidget {
   final String fileUrl;
+  final double? height;
+  final double? width;
   String? result;
 
-  PhotoPickerPage(this.fileUrl);
+  PhotoPickerPage(this.fileUrl, {this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class PhotoPickerPage extends StatelessWidget {
         child: Stack(children: [
           Align(
             child: GestureDetector(
-                child: Image.asset(fileUrl),
+                child: TImage(fileUrl, height: height, width: width),
                 onTap: () {
                   router.popRoute();
                   ChannelUtil.hideBottomBar(false);

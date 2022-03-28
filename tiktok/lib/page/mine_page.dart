@@ -15,6 +15,7 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   String url = 'asset/image/default_photo.jpg';
+  static const image_height = 120.0;
 
   _MinePageState() {
     SharedPreferences.getInstance().then((sp) {
@@ -33,15 +34,20 @@ class _MinePageState extends State<MinePage> {
       children: [
         Container(
           width: double.infinity,
-          height: 120,
+          height: image_height,
           child: GestureDetector(
               child: TImage(url, fit: BoxFit.cover),
               onTap: () async {
                 ChannelUtil.hideBottomBar(true);
-                var fileUrl = await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: url});
+                var fileUrl = await router
+                    .push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: url, "height": "$image_height"});
                 if (fileUrl is String) {
                   setState(() {
                     url = fileUrl;
+                  });
+
+                  SharedPreferences.getInstance().then((sp) {
+                    sp.setString(MCRouter.key_url, fileUrl);
                   });
                 }
               }),
