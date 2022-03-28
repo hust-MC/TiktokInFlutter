@@ -14,15 +14,22 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-  String url = 'asset/image/default_photo.jpg';
+  String _backgroundUrl = 'asset/image/default_photo.jpg';
+  String _avatarUrl = 'asset/image/avatar.jpg';
+
   static const image_height = 120.0;
+
+  static const key_avatar = "keyAvatar";
+  static const key_background = "keyBackground";
 
   _MinePageState() {
     SharedPreferences.getInstance().then((sp) {
-      String? fileUrl = sp.getString(MCRouter.key_url);
-      if (fileUrl != null && fileUrl.isNotEmpty) {
+      String? avatarUrl = sp.getString(key_avatar);
+      String? backgroundUrl = sp.getString(key_background);
+      if (avatarUrl?.isNotEmpty == true || backgroundUrl?.isNotEmpty == true) {
         setState(() {
-          url = fileUrl;
+          _avatarUrl = avatarUrl ?? _avatarUrl;
+          _backgroundUrl = backgroundUrl ?? _backgroundUrl;
         });
       }
     });
@@ -30,28 +37,48 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: image_height,
-          child: GestureDetector(
-              child: TImage(url, fit: BoxFit.cover),
-              onTap: () async {
-                ChannelUtil.hideBottomBar(true);
-                var fileUrl = await router
-                    .push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: url, "height": "$image_height"});
-                if (fileUrl is String) {
-                  setState(() {
-                    url = fileUrl;
-                  });
+        Column(children: [
+          Container(
+            width: double.infinity,
+            height: image_height,
+            child: GestureDetector(
+                child: TImage(_backgroundUrl, fit: BoxFit.cover),
+                onTap: () async {
+                  ChannelUtil.hideBottomBar(true);
+                  var fileUrl =
+                      await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: _backgroundUrl});
+                  if (fileUrl is String) {
+                    setState(() {
+                      _backgroundUrl = fileUrl;
+                    });
 
-                  SharedPreferences.getInstance().then((sp) {
-                    sp.setString(MCRouter.key_url, fileUrl);
-                  });
-                }
-              }),
-        )
+                    SharedPreferences.getInstance().then((sp) {
+                      sp.setString(key_background, fileUrl);
+                    });
+                  }
+                }),
+          )
+        ]),
+        Padding(
+            padding: EdgeInsets.only(top: 96, left: 16),
+            child: GestureDetector(
+                child: TImage(_avatarUrl, shape: Shape.CIRCLE, radius: 40),
+                onTap: () async {
+                  ChannelUtil.hideBottomBar(true);
+                  var fileUrl =
+                      await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: _avatarUrl});
+                  if (fileUrl is String) {
+                    setState(() {
+                      _backgroundUrl = fileUrl;
+                    });
+
+                    SharedPreferences.getInstance().then((sp) {
+                      sp.setString(key_avatar, fileUrl);
+                    });
+                  }
+                }))
       ],
     );
   }

@@ -1,21 +1,47 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TImage extends StatelessWidget {
   final String url;
   final fit;
+  final shape;
   double? height;
   double? width;
+  double? radius;
 
-  TImage(this.url, {this.fit = BoxFit.cover, this.width, this.height});
+  TImage(this.url, {this.fit = BoxFit.cover, this.shape = Shape.NORMAL, this.width, this.height, this.radius});
 
   @override
   Widget build(BuildContext context) {
-    if (url.contains('asset')) {
-      return Image.asset(url, fit: fit, width: width ?? double.infinity, height: height);
-    } else {
-      return Image.file(File(url), fit: fit, width: width ?? double.infinity, height: height);
+    switch (shape) {
+      case Shape.NORMAL:
+        if (url.contains('asset')) {
+          return Image.asset(url, fit: fit, width: width ?? double.infinity, height: height);
+        } else {
+          return Image.file(File(url), fit: fit, width: width ?? double.infinity, height: height);
+        }
+      case Shape.CIRCLE:
+        if (url.contains('asset')) {
+          return CircleAvatar(
+            radius: radius,
+            backgroundImage: AssetImage(url),
+          );
+        } else {
+          return CircleAvatar(
+            radius: radius,
+            backgroundImage: FileImage(File(url)),
+          );
+        }
+      default:
+        if (url.contains('asset')) {
+          return Image.asset(url, fit: fit, width: width ?? double.infinity, height: height);
+        } else {
+          return Image.file(File(url), fit: fit, width: width ?? double.infinity, height: height);
+        }
     }
   }
 }
+
+enum Shape { NORMAL, CIRCLE }
