@@ -17,6 +17,7 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> {
   String _backgroundUrl = 'asset/image/default_photo.jpg';
   String _avatarUrl = 'asset/image/avatar.jpg';
+  String _name = '马超';
 
   static const image_height = 120.0;
 
@@ -40,7 +41,8 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Column(children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // 背景墙
           Container(
             width: double.infinity,
             height: image_height,
@@ -54,7 +56,6 @@ class _MinePageState extends State<MinePage> {
                     setState(() {
                       _backgroundUrl = fileUrl;
                     });
-
                     SharedPreferences.getInstance().then((sp) {
                       sp.setString(key_background, fileUrl);
                     });
@@ -62,12 +63,27 @@ class _MinePageState extends State<MinePage> {
                 }),
           ),
           SizedBox(height: 3),
+          // 赞、关注、粉丝
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             SizedBox(width: 10),
             TextCount('获赞'),
             TextCount('关注'),
             TextCount('粉丝'),
-          ])
+          ]),
+          // 姓名
+          Padding(
+              padding: EdgeInsets.only(top: 30, left: 16),
+              child: Text(_name,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none))),
+          Padding(
+              padding: EdgeInsets.only(top: 30, left: 16),
+              child: Text('',
+                  style: TextStyle(
+                      color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.none)))
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),
