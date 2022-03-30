@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok/mc_route.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -33,8 +34,6 @@ class MyApp extends StatelessWidget {
         routerDelegate: router,
         backButtonDispatcher: RootBackButtonDispatcher(),
       ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      //   home: _pageRoute(window.defaultRouteName));
     );
   }
 
