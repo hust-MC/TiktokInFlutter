@@ -1,7 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TImage extends StatelessWidget {
   final String url;
@@ -18,9 +19,9 @@ class TImage extends StatelessWidget {
     switch (shape) {
       case Shape.NORMAL:
         if (url.contains('asset')) {
-          return Image.asset(url, fit: fit, width: width ?? double.infinity, height: height);
+          return Image.asset(url, fit: fit, width: width, height: height);
         } else {
-          return Image.file(File(url), fit: fit, width: width ?? double.infinity, height: height);
+          return Image.file(File(url), fit: fit, width: width, height: height);
         }
       case Shape.CIRCLE:
         if (url.contains('asset')) {

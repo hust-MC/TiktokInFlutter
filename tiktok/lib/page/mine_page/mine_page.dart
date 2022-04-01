@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok/page/mine_page/mine_page_controller.dart';
@@ -21,7 +23,8 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Scaffold(
+        body: Stack(
       children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // 背景墙
@@ -53,11 +56,52 @@ class _MinePageState extends State<MinePage> {
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.none)),
               )),
+          // uid
           Padding(
-              padding: EdgeInsets.only(top: 30, left: 16),
-              child: Text('',
-                  style: TextStyle(
-                      color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.none)))
+              padding: EdgeInsets.only(top: 18, left: 16),
+              child: Text(_controller.uid,
+                  style: TextStyle(color: Color(0xBB161822), fontSize: 14, decoration: TextDecoration.none))),
+          // divider
+          Container(
+            height: 1 / MediaQueryData.fromWindow(window).devicePixelRatio,
+            margin: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 12),
+            color: Color(0xFFE1E1E3),
+          ),
+          // profile
+          Container(
+            height: 18,
+            padding: EdgeInsets.only(left: 16),
+            child: Row(
+              children: [
+                Text('点击添加介绍，让大家认识你...',
+                    style: TextStyle(color: Color(0xFF72737A), fontSize: 12, decoration: TextDecoration.none)),
+                SizedBox(width: 2),
+                TImage('asset/image/edit.png', height: 12)
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(width: 16),
+              Expanded(
+                  child: Container(
+                      height: 22,
+                      alignment: Alignment.center,
+                      color: Color(0xFFF0F0F2),
+                      child: Text('编辑资料',
+                          style: TextStyle(color: Color(0xFF161812), fontSize: 15, decoration: TextDecoration.none)))),
+              SizedBox(height: 8),
+              Expanded(
+                  child: Container(
+                      height: 22,
+                      alignment: Alignment.center,
+                      color: Color(0xFFF0F0F2),
+                      child: Text('编辑资料',
+                          style: TextStyle(color: Color(0xFF161812), fontSize: 15, decoration: TextDecoration.none)))),
+              SizedBox(width: 16)
+            ],
+          )
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),
@@ -67,6 +111,6 @@ class _MinePageState extends State<MinePage> {
                   _controller.onTapAvatar();
                 }))
       ],
-    );
+    ));
   }
 }

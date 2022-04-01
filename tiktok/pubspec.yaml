@@ -41,6 +41,7 @@ flutter:
   assets:
     - asset/image/default_photo.jpg
     - asset/image/avatar.jpg
+    - asset/image/edit.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

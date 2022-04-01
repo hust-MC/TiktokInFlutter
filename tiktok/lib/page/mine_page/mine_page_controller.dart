@@ -9,11 +9,14 @@ class MinePageController extends GetxController {
   var backgroundUrl = 'asset/image/default_photo.jpg'.obs;
   var avatarUrl = 'asset/image/avatar.jpg'.obs;
   var name = '马超'.obs;
+  var _uid = '88888888';
 
   static const image_height = 120.0;
 
   final key_avatar = "keyAvatar";
   final key_background = "keyBackground";
+
+  get uid => '慕课号：$_uid';
 
   MinePageController() {
     SharedPreferences.getInstance().then((sp) {
@@ -42,7 +45,6 @@ class MinePageController extends GetxController {
     var fileUrl = await router.push(name: MCRouter.photo_picker, arguments: {MCRouter.key_url: avatarUrl.value});
     if (fileUrl is String) {
       avatarUrl.value = fileUrl;
-
       SharedPreferences.getInstance().then((sp) {
         sp.setString(key_avatar, fileUrl);
       });
