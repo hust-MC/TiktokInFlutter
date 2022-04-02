@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/page/friend_page.dart';
 import 'package:tiktok/page/message_page.dart';
 import 'package:tiktok/page/mine_page/mine_page.dart';
+import 'package:tiktok/page/video_list/video_list_page.dart';
 import 'package:tiktok/photo/photo_picker_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
@@ -97,7 +98,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
             width: double.tryParse(width), height: double.tryParse(height));
         break;
       case mine_page:
-        child = MinePage();
+        child = VideoListPage();
         break;
       case friend_page:
         child = FriendPage(title: 'title');

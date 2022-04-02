@@ -6,6 +6,7 @@ import 'package:tiktok/page/mine_page/mine_page_controller.dart';
 import 'package:tiktok/widget/text_count.dart';
 
 import '../../widget/TImage.dart';
+import '../video_list/video_list_page.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -80,28 +81,41 @@ class _MinePageState extends State<MinePage> {
               ],
             ),
           ),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(width: 16),
               Expanded(
                   child: Container(
-                      height: 22,
+                      height: 36,
                       alignment: Alignment.center,
                       color: Color(0xFFF0F0F2),
                       child: Text('编辑资料',
-                          style: TextStyle(color: Color(0xFF161812), fontSize: 15, decoration: TextDecoration.none)))),
-              SizedBox(height: 8),
+                          style: TextStyle(color: Color(0xFF161812), fontSize: 16, decoration: TextDecoration.none)))),
+              SizedBox(width: 5),
               Expanded(
                   child: Container(
-                      height: 22,
+                      height: 36,
                       alignment: Alignment.center,
                       color: Color(0xFFF0F0F2),
-                      child: Text('编辑资料',
-                          style: TextStyle(color: Color(0xFF161812), fontSize: 15, decoration: TextDecoration.none)))),
+                      child: Text('添加朋友',
+                          style: TextStyle(color: Color(0xFF161812), fontSize: 16, decoration: TextDecoration.none)))),
               SizedBox(width: 16)
             ],
-          )
+          ),
+          SizedBox(height: 20),
+          // VideoListPage(),
+
+          Expanded(child: VideoListPage()
+              //     PageView(
+              //   children: [
+              //     VideoListPage(),
+              //     Text('2'),
+              //     Text('3'),
+              //   ],
+              // )
+              )
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),

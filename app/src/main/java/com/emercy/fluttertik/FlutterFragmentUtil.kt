@@ -7,6 +7,8 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin
+import io.flutter.plugins.videoplayer.VideoPlayerPlugin
 
 /**
  * @author Emercy
@@ -26,13 +28,17 @@ object FlutterFragmentUtil {
 
         if (null == flutterEngine) {
             flutterEngine = FlutterEngine(context)
+
             flutterEngine.navigationChannel.setInitialRoute(initRoute)
             flutterEngine.dartExecutor.executeDartEntrypoint(
                 DartExecutor.DartEntrypoint.createDefault()
             )
+
             FlutterEngineCache.getInstance().put(id, flutterEngine)
             setMethodChannels(context, flutterEngine)
         }
+        flutterEngine.plugins.add(SharedPreferencesPlugin())
+        flutterEngine.plugins.add(VideoPlayerPlugin())
         return FlutterFragment.withCachedEngine(id).shouldAttachEngineToActivity(true)
             .build() as FlutterFragment
     }
