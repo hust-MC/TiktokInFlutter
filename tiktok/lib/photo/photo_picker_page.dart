@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok/channel_util.dart';
-import 'package:tiktok/widget/TImage.dart';
+import 'package:tiktok/widget/t_image.dart';
 
 import '../main.dart';
 

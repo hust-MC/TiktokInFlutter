@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:tiktok/page/mine_page/mine_page_controller.dart';
 import 'package:tiktok/widget/text_count.dart';
 
-import '../../widget/TImage.dart';
+import '../../widget/t_image.dart';
+import '../../widget/title_page_view.dart';
 import '../video_list/video_list_page.dart';
 
 class MinePage extends StatefulWidget {
@@ -105,14 +106,17 @@ class _MinePageState extends State<MinePage> {
             ],
           ),
           SizedBox(height: 20),
-          Expanded(child:
-          PageView(
-            children: [
-              VideoListPage("asset:///asset/video/video1.mp4"),
-              VideoListPage("asset:///asset/video/video1.mp4"),
-              VideoListPage("asset:///asset/video/video1.mp4"),
-            ],
-          ))
+          Expanded(
+            child: TitlePageView(
+                pageView: PageView(
+                  children: [
+                    VideoListPage("asset:///asset/video/video1.mp4"),
+                    VideoListPage("asset:///asset/video/video1.mp4"),
+                    VideoListPage("asset:///asset/video/video1.mp4"),
+                  ],
+                ),
+                title: ['1', '2', '3']),
+          )
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),
