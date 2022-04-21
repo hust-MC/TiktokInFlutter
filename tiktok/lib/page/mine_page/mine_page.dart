@@ -105,17 +105,14 @@ class _MinePageState extends State<MinePage> {
             ],
           ),
           SizedBox(height: 20),
-          // VideoListPage(),
-
-          Expanded(child: VideoListPage()
-              //     PageView(
-              //   children: [
-              //     VideoListPage(),
-              //     Text('2'),
-              //     Text('3'),
-              //   ],
-              // )
-              )
+          Expanded(child:
+          PageView(
+            children: [
+              VideoListPage("asset:///asset/video/video1.mp4"),
+              VideoListPage("asset:///asset/video/video1.mp4"),
+              VideoListPage("asset:///asset/video/video1.mp4"),
+            ],
+          ))
         ]),
         Padding(
             padding: EdgeInsets.only(top: 96, left: 16),

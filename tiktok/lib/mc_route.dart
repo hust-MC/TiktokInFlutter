@@ -98,7 +98,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
             width: double.tryParse(width), height: double.tryParse(height));
         break;
       case mine_page:
-        child = VideoListPage();
+        child = MinePage();
         break;
       case friend_page:
         child = FriendPage(title: 'title');
