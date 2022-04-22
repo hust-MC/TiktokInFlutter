@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok/page/mine_page/mine_page_controller.dart';
+import 'package:tiktok/page/video_list/video_list_controller.dart';
 import 'package:tiktok/widget/text_count.dart';
 
 import '../../widget/t_image.dart';
@@ -110,10 +111,10 @@ class _MinePageState extends State<MinePage> {
             child: TitlePageView(
                 pageView: PageView(
                   children: [
-                    VideoList("asset:///asset/video/video1.mp4"),
-                    VideoList("asset:///asset/video/video1.mp4"),
-                    VideoList("asset:///asset/video/video1.mp4"),
-                    VideoList("asset:///asset/video/video1.mp4"),
+                    VideoList(VideoListController()),
+                    VideoList(VideoListController()),
+                    VideoList(VideoListController()),
+                    VideoList(VideoListController()),
                   ],
                 ),
                 title: ['作品', '私密', '收藏', '喜欢']),
