@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/page/friend_page.dart';
 import 'package:tiktok/page/message_page.dart';
 import 'package:tiktok/page/mine_page/mine_page.dart';
-import 'package:tiktok/page/video_list/video_list_page.dart';
+import 'package:tiktok/page/video_list/video_list.dart';
 import 'package:tiktok/photo/photo_picker_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>

@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:fijkplayer/fijkplayer.dart';
 
 // ignore: must_be_immutable
-class VideoListPage extends StatefulWidget {
+class VideoList extends StatefulWidget {
   final String _playUrl;
   final int loop;
   int startSeconds = 0; //播放起始时间
 
-  VideoListPage(
-    this._playUrl,
-      {this.loop = -1,
+  VideoList(
+    this._playUrl, {
+    this.loop = -1,
     this.startSeconds = 0,
   });
 
   @override
-  _VideoListPageState createState() => _VideoListPageState();
+  _VideoListState createState() => _VideoListState();
 }
 
-class _VideoListPageState extends State<VideoListPage> {
+class _VideoListState extends State<VideoList> {
   final FijkPlayer player = FijkPlayer();
 
   @override
   void initState() {
     super.initState();
-    player.setDataSource(
-        widget._playUrl,
-        autoPlay: true);
+    player.setDataSource(widget._playUrl, autoPlay: true);
     player.setLoop(widget.loop);
   }
 

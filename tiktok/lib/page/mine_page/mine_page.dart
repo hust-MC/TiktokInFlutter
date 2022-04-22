@@ -6,8 +6,8 @@ import 'package:tiktok/page/mine_page/mine_page_controller.dart';
 import 'package:tiktok/widget/text_count.dart';
 
 import '../../widget/t_image.dart';
-import '../../widget/title_page_view.dart';
-import '../video_list/video_list_page.dart';
+import '../../widget/title_page_view/title_page_view.dart';
+import '../video_list/video_list.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -110,12 +110,13 @@ class _MinePageState extends State<MinePage> {
             child: TitlePageView(
                 pageView: PageView(
                   children: [
-                    VideoListPage("asset:///asset/video/video1.mp4"),
-                    VideoListPage("asset:///asset/video/video1.mp4"),
-                    VideoListPage("asset:///asset/video/video1.mp4"),
+                    VideoList("asset:///asset/video/video1.mp4"),
+                    VideoList("asset:///asset/video/video1.mp4"),
+                    VideoList("asset:///asset/video/video1.mp4"),
+                    VideoList("asset:///asset/video/video1.mp4"),
                   ],
                 ),
-                title: ['1', '2', '3']),
+                title: ['作品', '私密', '收藏', '喜欢']),
           )
         ]),
         Padding(
