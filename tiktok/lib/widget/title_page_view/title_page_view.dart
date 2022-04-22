@@ -22,10 +22,13 @@ class TitlePageViewState extends State<TitlePageView> {
   void initState() {
     super.initState();
     _controller = TitlePageController();
-    widget.pageView.controller.addListener(() {
-      _controller.focus.value = widget.pageView.controller.page?.round() ?? 0;
-      print("$tag - Current page is ${_controller.focus.value}");
-    });
+    widget.pageView.controller.addListener(_pageViewListener);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.pageView.controller.removeListener(_pageViewListener);
   }
 
   @override
@@ -33,13 +36,21 @@ class TitlePageViewState extends State<TitlePageView> {
     return Obx(() => Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ...widget.title.map((e) {
-              var textColor = widget.title.indexOf(e) == _controller.focus.value
+              var index = widget.title.indexOf(e);
+              var textColor = index == _controller.focus.value
                   ? TitlePageController.titleColorFocus
                   : TitlePageController.titleColorNormal;
-              return Text(e, style: TextStyle(color: textColor, fontSize: 18, decoration: TextDecoration.none));
+              return GestureDetector(
+                  child: Text(e, style: TextStyle(color: textColor, fontSize: 18, decoration: TextDecoration.none)),
+                  onTap: () => widget.pageView.controller.jumpToPage(index));
             }),
           ]),
           Expanded(child: widget.pageView)
         ]));
+  }
+
+  void _pageViewListener() {
+    _controller.focus.value = widget.pageView.controller.page?.round() ?? 0;
+    print("$tag - Current page is ${_controller.focus.value}");
   }
 }
