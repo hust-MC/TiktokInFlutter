@@ -53,6 +53,6 @@ class _VideoListState extends State<VideoList> {
     player.setDataSource(model.url, autoPlay: true);
     player.setLoop(model.loop);
 
-    return FijkView(player: player);
+    return FijkView(player: player, color: Colors.black);
   }
 }
