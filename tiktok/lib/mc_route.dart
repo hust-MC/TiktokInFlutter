@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tiktok/gen/assets.gen.dart';
 import 'package:tiktok/page/friend_page.dart';
-import 'package:tiktok/page/message_page.dart';
+import 'package:tiktok/page/message_page/message_page.dart';
 import 'package:tiktok/page/mine_page/mine_page.dart';
 import 'package:tiktok/photo/photo_picker_page.dart';
 
@@ -99,9 +99,6 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         break;
       case mine_page:
         child = MinePage();
-        break;
-      case friend_page:
-        child = FriendPage(title: 'title');
         break;
       case message_page:
         child = MessagePage(title: 'title');

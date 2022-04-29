@@ -10,7 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * @description 首页Fragment
  * @data 2022/2/25
  */
-class HomePagerAdapter(fragmentActivity: FragmentActivity) :
+class VideoPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
     companion object {

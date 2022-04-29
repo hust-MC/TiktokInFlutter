@@ -7,7 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.emercy.fluttertik.page.HomePageFragment
+import com.emercy.fluttertik.page.VideoPageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
@@ -17,10 +17,10 @@ class MainActivity : FragmentActivity() {
     }
 
     private val homeFragment by lazy {
-        HomePageFragment()
+        VideoPageFragment()
     }
     private val friendFragment by lazy {
-        FlutterFragmentUtil.createFlutterFragment(this, "friend", "/friend")
+        VideoPageFragment()
     }
     private val messageFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "message", "/message")

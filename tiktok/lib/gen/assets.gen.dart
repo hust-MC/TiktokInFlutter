@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 class $AssetImageGen {
   const $AssetImageGen();
 
+  AssetGenImage get add => const AssetGenImage('asset/image/add.png');
   AssetGenImage get avatar => const AssetGenImage('asset/image/avatar.jpg');
   AssetGenImage get defaultPhoto =>
       const AssetGenImage('asset/image/default_photo.jpg');

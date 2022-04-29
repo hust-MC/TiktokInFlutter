@@ -14,10 +14,10 @@ import kotlinx.android.synthetic.main.fragment_home_page.*
 /**
  * 首页Fragment，首页采用原生编写
  */
-class HomePageFragment : Fragment() {
+class VideoPageFragment : Fragment() {
 
     companion object {
-        const val TAG = "HomePageFragment"
+        const val TAG = "VideoPageFragment"
     }
 
     override fun onCreateView(
@@ -30,7 +30,7 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view_pager.apply {
-            adapter = HomePagerAdapter(requireActivity())
+            adapter = VideoPagerAdapter(requireActivity())
             setCurrentItem(1, false)
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -57,6 +57,6 @@ class HomePageFragment : Fragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         Log.e(TAG, "onHiddenChanged : $hidden")
-        (view_pager.adapter as HomePagerAdapter).onHiddenChanged(hidden)
+        (view_pager.adapter as VideoPagerAdapter).onHiddenChanged(hidden)
     }
 }
