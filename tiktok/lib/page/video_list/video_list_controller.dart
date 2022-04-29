@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:get/get.dart';
 
+import '../../gen/assets.gen.dart';
 import 'video_model.dart';
 
 class VideoListController extends GetxController {
@@ -10,7 +11,7 @@ class VideoListController extends GetxController {
   VideoListController() {
     var total = Random().nextInt(10);
     for (int i = 0; i < total; i++) {
-      models.add(VideoModel("asset:///asset/video/video1.mp4", count: Random().nextInt(1000)));
+      models.add(VideoModel(Assets.video.video1, count: Random().nextInt(1000)));
     }
   }
 }

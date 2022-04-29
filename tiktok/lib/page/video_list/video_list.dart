@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:get/get.dart';
+import 'package:tiktok/gen/assets.gen.dart';
 import 'package:tiktok/page/video_list/video_list_controller.dart';
 
 import '../../widget/t_image.dart';
@@ -44,7 +45,7 @@ class _VideoListState extends State<VideoList> {
           var model = _controller.models[index];
           return Stack(children: [
             buildPlayers(_players[index], model),
-            Row(children: [TImage('asset/image/play.png', height: 10), Text(model.count.toString())]),
+            Row(children: [TImage(Assets.image.play.assetName, height: 10), Text(model.count.toString())]),
           ]);
         });
   }

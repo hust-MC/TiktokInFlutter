@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tiktok/gen/assets.gen.dart';
 
 import '../../channel_util.dart';
 import '../../main.dart';
 import '../../mc_route.dart';
 
 class MinePageController extends GetxController {
-  var backgroundUrl = 'asset/image/default_photo.jpg'.obs;
-  var avatarUrl = 'asset/image/avatar.jpg'.obs;
+  var backgroundUrl = Assets.image.defaultPhoto.assetName.obs;
+  var avatarUrl = Assets.image.avatar.assetName.obs;
   var name = '马超'.obs;
   var _uid = '88888888';
 

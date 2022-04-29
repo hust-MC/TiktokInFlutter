@@ -6,6 +6,7 @@ import 'package:tiktok/page/mine_page/mine_page_controller.dart';
 import 'package:tiktok/page/video_list/video_list_controller.dart';
 import 'package:tiktok/widget/text_count.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../widget/t_image.dart';
 import '../../widget/title_page_view/title_page_view.dart';
 import '../video_list/video_list.dart';
@@ -79,7 +80,7 @@ class _MinePageState extends State<MinePage> {
                 Text('点击添加介绍，让大家认识你...',
                     style: TextStyle(color: Color(0xFF72737A), fontSize: 12, decoration: TextDecoration.none)),
                 SizedBox(width: 2),
-                TImage('asset/image/edit.png', height: 12)
+                TImage(Assets.image.edit.assetName, height: 12)
               ],
             ),
           ),

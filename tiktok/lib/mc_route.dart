@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:tiktok/gen/assets.gen.dart';
 import 'package:tiktok/page/friend_page.dart';
 import 'package:tiktok/page/message_page.dart';
 import 'package:tiktok/page/mine_page/mine_page.dart';
-import 'package:tiktok/page/video_list/video_list.dart';
 import 'package:tiktok/photo/photo_picker_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
@@ -94,7 +94,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
           height = args["height"] ?? height;
           width = args["width"] ?? width;
         }
-        child = PhotoPickerPage(url ?? 'asset/image/default_photo.jpg',
+        child = PhotoPickerPage(url ?? Assets.image.defaultPhoto.assetName,
             width: double.tryParse(width), height: double.tryParse(height));
         break;
       case mine_page:
