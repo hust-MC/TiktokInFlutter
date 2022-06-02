@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/bt_home"
         style="@style/BottomButtonStyle"
         android:text="首页"
@@ -33,14 +34,17 @@
         app:layout_constraintLeft_toRightOf="@id/bt_home"
         app:layout_constraintRight_toLeftOf="@id/bt_add" />
 
-    <Button
+    <ImageButton
         android:id="@+id/bt_add"
         style="@style/BottomButtonStyle"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="40dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/post"
+        app:layout_constraintBottom_toBottomOf="@id/bt_friend"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/bt_friend"
-        app:layout_constraintRight_toLeftOf="@id/bt_message" />
+        app:layout_constraintRight_toLeftOf="@id/bt_message"
+        app:layout_constraintTop_toTopOf="@id/bt_friend" />
 
     <Button
         android:id="@+id/bt_message"

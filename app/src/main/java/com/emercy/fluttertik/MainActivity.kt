@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.emercy.fluttertik.page.VideoPageFragment
@@ -56,11 +57,17 @@ class MainActivity : FragmentActivity() {
             R.id.bt_message -> messageFragment
             R.id.bt_mine -> mineFragment
             else -> homeFragment
-
         }.let {
             if (currentFragment == it) {
                 return
             }
+
+            bt_home.setTextColor(getColor(R.color.bottom_button_color))
+            bt_friend.setTextColor(getColor(R.color.bottom_button_color))
+            bt_message.setTextColor(getColor(R.color.bottom_button_color))
+            bt_mine.setTextColor(getColor(R.color.bottom_button_color))
+            (view as Button).setTextColor(getColor(R.color.white))
+
             if (it.isAdded) {
                 supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
             } else {
