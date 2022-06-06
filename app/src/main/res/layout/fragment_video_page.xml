@@ -12,6 +12,7 @@
         android:layout_height="match_parent" />
 
     <com.emercy.fluttertik.CircleImageView
+        android:id="@+id/avatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="23dp"
@@ -19,6 +20,15 @@
         app:layout_constraintBottom_toTopOf="@id/like"
         app:layout_constraintLeft_toLeftOf="@id/like"
         app:layout_constraintRight_toRightOf="@id/like" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="-10dp"
+        android:src="@mipmap/add"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintLeft_toLeftOf="@id/avatar"
+        app:layout_constraintRight_toRightOf="@id/avatar" />
 
     <ToggleButton
         android:id="@+id/like"
@@ -30,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="61"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -48,7 +58,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="17"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -66,7 +76,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="收藏"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -85,7 +95,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="分享"
         android:textColor="@color/white"
         android:textSize="12sp"
