@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,7 +9,9 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black" />
+        android:background="@color/black"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <View
         android:id="@+id/text_background"
@@ -61,51 +64,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="98dp"
-        android:text="\@超低空"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="拍拍拍#周末日常 >"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/name" />
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:text="2021-7-25 22:18"
-        android:textColor="@color/video_time_color"
-        android:textSize="11sp"
-        app:layout_constraintLeft_toLeftOf="@id/title"
-        app:layout_constraintTop_toBottomOf="@id/title" />
-
-    <com.emercy.fluttertik.MarqueTextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:width="187dp"
-        android:text="\@超低空创作的原声大跌超低空创作的原声大碟"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="@id/time"
-        app:layout_constraintTop_toBottomOf="@id/time">
-
-    </com.emercy.fluttertik.MarqueTextView>
 </androidx.constraintlayout.widget.ConstraintLayout>
