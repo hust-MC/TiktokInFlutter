@@ -27,12 +27,34 @@
         app:layout_constraintBottom_toTopOf="@id/comment"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="61"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/like"
+        app:layout_constraintRight_toRightOf="@id/like"
+        app:layout_constraintTop_toBottomOf="@id/like" />
+
     <ImageView
         android:id="@+id/comment"
         style="@style/HomePageRightImageStyle"
         android:src="@mipmap/comment"
         app:layout_constraintBottom_toTopOf="@id/mark"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="17"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/comment"
+        app:layout_constraintRight_toRightOf="@id/comment"
+        app:layout_constraintTop_toBottomOf="@id/comment" />
 
     <ToggleButton
         android:id="@+id/mark"
@@ -41,6 +63,17 @@
         app:layout_constraintBottom_toTopOf="@id/forward"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="收藏"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/mark"
+        app:layout_constraintRight_toRightOf="@id/mark"
+        app:layout_constraintTop_toBottomOf="@id/mark" />
+
     <ImageView
         android:id="@+id/forward"
         style="@style/HomePageRightImageStyle"
@@ -48,6 +81,17 @@
         android:src="@mipmap/forward"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="分享"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/forward"
+        app:layout_constraintRight_toRightOf="@id/forward"
+        app:layout_constraintTop_toBottomOf="@id/forward" />
 
     <ImageView
         android:id="@+id/play"
