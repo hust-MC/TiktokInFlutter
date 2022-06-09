@@ -51,7 +51,7 @@ class _MinePageState extends State<MinePage> {
           ]),
           // 姓名
           Padding(
-              padding: EdgeInsets.only(top: 30, left: 16),
+              padding: EdgeInsets.only(top: 30, left: 19),
               child: Obx(
                 () => Text(_controller.name.value,
                     style: TextStyle(
@@ -62,13 +62,13 @@ class _MinePageState extends State<MinePage> {
               )),
           // uid
           Padding(
-              padding: EdgeInsets.only(top: 18, left: 16),
+              padding: EdgeInsets.only(top: 5, left: 19),
               child: Text(_controller.uid,
-                  style: TextStyle(color: Color(0xBB161822), fontSize: 14, decoration: TextDecoration.none))),
+                  style: TextStyle(color: Colors.black, fontSize: 11, decoration: TextDecoration.none))),
           // divider
           Container(
             height: 1 / MediaQueryData.fromWindow(window).devicePixelRatio,
-            margin: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 12),
+            margin: EdgeInsets.only(left: 19, right: 16, top: 10, bottom: 12),
             color: Color(0xFFE1E1E3),
           ),
           // profile
@@ -85,44 +85,31 @@ class _MinePageState extends State<MinePage> {
             ),
           ),
           SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(width: 16),
-              Expanded(
-                  child: Container(
-                      height: 36,
-                      alignment: Alignment.center,
-                      color: Color(0xFFF0F0F2),
-                      child: Text('编辑资料',
-                          style: TextStyle(color: Color(0xFF161812), fontSize: 16, decoration: TextDecoration.none)))),
-              SizedBox(width: 5),
-              Expanded(
-                  child: Container(
-                      height: 36,
-                      alignment: Alignment.center,
-                      color: Color(0xFFF0F0F2),
-                      child: Text('添加朋友',
-                          style: TextStyle(color: Color(0xFF161812), fontSize: 16, decoration: TextDecoration.none)))),
-              SizedBox(width: 16)
-            ],
-          ),
-          SizedBox(height: 20),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                width: double.infinity,
+                height: 36,
+                color: Color(0xFFFE2D54),
+                child: Text('+ 关注',
+                    style: TextStyle(color: Color(0xFFFBFBFC), fontSize: 15, decoration: TextDecoration.none)),
+                alignment: Alignment.center,
+              )),
+
+          SizedBox(height: 30),
           Expanded(
             child: TitlePageView(
                 pageView: PageView(
                   children: [
                     VideoList(VideoListController()),
                     VideoList(VideoListController()),
-                    VideoList(VideoListController()),
-                    VideoList(VideoListController()),
                   ],
                 ),
-                title: ['作品', '私密', '收藏', '喜欢']),
+                title: ['作品', '喜欢']),
           )
         ]),
         Padding(
-            padding: EdgeInsets.only(top: 96, left: 16),
+            padding: EdgeInsets.only(top: 96, left: 19),
             child: GestureDetector(
                 child: Obx(() => TImage(_controller.avatarUrl.value, shape: Shape.CIRCLE, radius: 40)),
                 onTap: () async {
