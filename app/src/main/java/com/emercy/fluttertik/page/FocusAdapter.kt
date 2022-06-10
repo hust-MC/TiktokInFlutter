@@ -1,11 +1,14 @@
 package com.emercy.fluttertik.page
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.app.Dialog
+import android.app.ProgressDialog.show
+import android.view.*
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.emercy.fluttertik.R
+import com.emercy.fluttertik.widget.CommentDialog
 
 /**
  * @author Emercy
@@ -36,6 +39,9 @@ class FocusAdapter : RecyclerView.Adapter<FocusAdapter.VideoHolder>() {
                     view.findViewById<View>(R.id.play).visibility = View.GONE
                 }
             }
+        }
+        view.findViewById<ImageView>(R.id.comment).setOnClickListener {
+            CommentDialog.show(view.context)
         }
         return VideoHolder(view)
     }
