@@ -2,15 +2,49 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="115dp">
+
+    <com.emercy.fluttertik.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="11dp"
+        android:src="@mipmap/comment_avatar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sfasfasfasdfsafsdf"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="超低空"
+        android:textColor="#737278"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@id/avatar"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="打工人是人上人"
+        android:textColor="#16181f"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="2021-2-16"
+        android:textColor="#75747a"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="@id/content"
+        app:layout_constraintTop_toBottomOf="@id/content" />
 </androidx.constraintlayout.widget.ConstraintLayout>
