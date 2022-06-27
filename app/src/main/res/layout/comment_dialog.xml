@@ -28,10 +28,38 @@
         app:layout_constraintRight_toRightOf="@id/comment_count"
         app:layout_constraintTop_toBottomOf="@id/comment_count" />
 
+    <TextView
+        android:id="@+id/like_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="赞 2"
+        android:textColor="#76757d"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toRightOf="@id/comment_count"
+        app:layout_constraintTop_toTopOf="@id/comment_count" />
+
+    <View
+        android:id="@+id/like_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@id/like_count"
+        app:layout_constraintRight_toRightOf="@id/like_count"
+        app:layout_constraintTop_toBottomOf="@id/like_count" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comment_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/count_line" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/like_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/count_line" />
 </androidx.constraintlayout.widget.ConstraintLayout>
