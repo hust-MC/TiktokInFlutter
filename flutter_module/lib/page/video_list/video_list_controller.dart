@@ -9,9 +9,9 @@ class VideoListController extends GetxController {
   var models = <VideoModel>[].obs;
 
   VideoListController() {
-    var total = 3;
+    var total = 10;
     for (int i = 0; i < total; i++) {
-      models.add(VideoModel(Assets.video.video1, count: Random().nextInt(1000)));
+      models.add(VideoModel('asset:///${Assets.video.video1}', count: Random().nextInt(1000)));
     }
   }
 }

@@ -18,6 +18,7 @@ class MinePageController extends GetxController {
   final key_background = "keyBackground";
 
   get uid => '慕课号：$_uid';
+  get videoCount => 31;
 
   MinePageController() {
     SharedPreferences.getInstance().then((sp) {

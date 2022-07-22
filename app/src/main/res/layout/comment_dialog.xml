@@ -54,12 +54,12 @@
         android:id="@+id/comment_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/count_line" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/like_list"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/count_line" />
 </androidx.constraintlayout.widget.ConstraintLayout>

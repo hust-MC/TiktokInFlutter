@@ -15,6 +15,7 @@ class $AssetImageGen {
   AssetGenImage get edit => const AssetGenImage('asset/image/edit.png');
   AssetGenImage get img => const AssetGenImage('asset/image/img.png');
   AssetGenImage get img1 => const AssetGenImage('asset/image/img_1.png');
+  AssetGenImage get lock => const AssetGenImage('asset/image/lock.png');
   AssetGenImage get play => const AssetGenImage('asset/image/play.png');
 }
 

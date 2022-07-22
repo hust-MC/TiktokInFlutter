@@ -8,6 +8,7 @@ import 'package:flutter_module/widget/text_count.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../widget/t_image.dart';
+import '../../widget/title_page_view/title_page_controller.dart';
 import '../../widget/title_page_view/title_page_view.dart';
 import '../video_list/video_list.dart';
 
@@ -88,24 +89,26 @@ class _MinePageState extends State<MinePage> {
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFFE2D54),
+                  borderRadius: BorderRadius.circular(4), // 圆角
+                ),
                 width: double.infinity,
                 height: 36,
-                color: Color(0xFFFE2D54),
                 child: Text('+ 关注',
                     style: TextStyle(color: Color(0xFFFBFBFC), fontSize: 15, decoration: TextDecoration.none)),
                 alignment: Alignment.center,
               )),
-
           SizedBox(height: 30),
           Expanded(
             child: TitlePageView(
-                pageView: PageView(
-                  children: [
-                    VideoList(VideoListController()),
-                    VideoList(VideoListController()),
-                  ],
-                ),
-                title: ['作品', '喜欢']),
+                tableBuilder: (index, focus) {
+                  return _getTableTitle(index, focus);
+                },
+                pageBuilder: (index) {
+                  return VideoList(VideoListController());
+                },
+                length: 2),
           )
         ]),
         Padding(
@@ -117,5 +120,27 @@ class _MinePageState extends State<MinePage> {
                 }))
       ],
     ));
+  }
+
+  Widget _getTableTitle(int index, int focus) {
+    var isFocus = index == focus;
+
+    var style = TextStyle(
+        color: isFocus ? TitlePageViewController.titleColorFocus : TitlePageViewController.titleColorNormal,
+        fontSize: 15,
+        decoration: TextDecoration.none,
+        fontWeight: isFocus ? FontWeight.bold : null);
+    switch (index) {
+      case 0:
+        return Text('作品 ${_controller.videoCount.toString()}', style: style);
+      case 1:
+        return Row(children: [
+          Text('喜欢', style: style),
+          SizedBox(width: 7),
+          TImage(Assets.image.lock.assetName, width: 12, height: 12)
+        ]);
+      default:
+        return Text('空页面', style: style);
+    }
   }
 }
