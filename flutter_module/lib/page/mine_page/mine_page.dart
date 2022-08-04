@@ -53,7 +53,7 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                   SliverAppBar(
                     pinned: true,
                     floating: true,
-                    expandedHeight: 375,
+                    expandedHeight: 400,
                     flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.pin,
                       background: Container(
@@ -141,8 +141,15 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                   style: TextStyle(color: Color(0xFFFBFBFC), fontSize: 15, decoration: TextDecoration.none)),
               alignment: Alignment.center,
             )),
-        SizedBox(height: 30)
-      ])
+        SizedBox(height: 30),
+      ]),
+      Padding(
+          padding: EdgeInsets.only(top: 96, left: 19),
+          child: GestureDetector(
+              child: Obx(() => TImage(_controller.avatarUrl.value, shape: Shape.CIRCLE, radius: 40)),
+              onTap: () async {
+                _controller.onTapAvatar();
+              }))
     ]);
   }
 
