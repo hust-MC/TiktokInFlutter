@@ -45,11 +45,6 @@ class ServerData {
         "title": "示例视频",
         "url": "https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg2.mp4",
         "playCount": 88
-    },
-    {
-        "title": "示例视频",
-        "url": "https://stream7.iqilu.com/10339/article/202002/16/3be2e4ef4aa21bfe7493064a7415c34d.mp4",
-        "playCount": 88
     }
 ]""";
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,8 @@ abstract class VideoController {
   String get spKey;
 
   String get videoData;
+
+  int get count => Random().nextInt(1000);
 
   Future<void> init() async {
     // 首先判断一级缓存——即内存中是否有数据

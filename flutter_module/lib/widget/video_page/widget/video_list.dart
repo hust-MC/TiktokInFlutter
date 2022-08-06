@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:player/player.dart';
 import 'package:player/video_view.dart';
 
+import '../../../gen/assets.gen.dart';
 import '../../../main.dart';
 import '../../../mc_route.dart';
+import '../../t_image.dart';
 import '../controller/video_controller.dart';
 
 class VideoList extends StatefulWidget {
@@ -33,11 +35,26 @@ class _VideoListState extends State<VideoList> {
               return GestureDetector(
                   child: widget.controller.dataList == null
                       ? Container() // 加载提示或者骨架屏
-                      : AbsorbPointer(
-                          absorbing: true,
-                          child: VideoView(Player()
-                            ..setCommonDataSource(widget.controller.dataList![index].url,
-                                type: SourceType.net, autoPlay: true))),
+                      : Stack(
+                    alignment: Alignment.bottomLeft,
+                          children: [
+                            AbsorbPointer(
+                                absorbing: true,
+                                child: VideoView(Player()
+                                  ..setCommonDataSource(widget.controller.dataList![index].url,
+                                      type: SourceType.net, autoPlay: true))),
+                            Padding(
+                                padding: EdgeInsets.only(bottom: 10, left: 15),
+                                child: Row(children: [
+                                  TImage(Assets.image.play.assetName, height: 12),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    widget.controller.count.toString(),
+                                    style: TextStyle(color: Colors.white, fontSize: 12),
+                                  )
+                                ]))
+                          ],
+                        ),
                   onTap: () async =>
                       await router.push(name: MCRouter.playerPage, arguments: widget.controller.dataList![index].url));
             }));
