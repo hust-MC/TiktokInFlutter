@@ -2,12 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_module/gen/assets.gen.dart';
-import 'package:flutter_module/page/friend_page.dart';
 import 'package:flutter_module/page/message_page/message_page.dart';
 import 'package:flutter_module/page/mine_page/mine_page.dart';
 import 'package:flutter_module/photo/photo_picker_page.dart';
-
-import 'widget/player_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {
@@ -15,7 +12,6 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String mine_page = '/mine';
   static const String friend_page = '/friend';
   static const String message_page = '/message';
-  static const String playerPage = '/player';
 
   static const String key_url = 'url';
 
@@ -105,9 +101,6 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         break;
       case message_page:
         child = MessagePage(title: 'title');
-        break;
-      case playerPage:
-        child = PlayerPage(routeSettings.arguments?.toString() ?? '');
         break;
       default:
         child = const Scaffold();

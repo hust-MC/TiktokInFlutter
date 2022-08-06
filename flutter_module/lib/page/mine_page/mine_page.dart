@@ -7,9 +7,6 @@ import 'package:flutter_module/widget/text_count.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../widget/t_image.dart';
-import '../../widget/title_page_view/title_page_controller.dart';
-import '../../widget/title_page_view/title_page_view.dart';
-import '../../widget/video_page/video_list.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -65,14 +62,11 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                     ),
                     bottom: TabBar(
                         controller: _tabController,
-                        tabs: [Tab(text: '作品'), Tab(text: "私密"), Tab(text: '收藏'), Tab(text: "喜欢")]),
+                        tabs: [Tab(text: "aaa"), Tab(text: "bbb"), Tab(text: "ccc"), Tab(text: "ddd")]),
                   )
                 ];
               },
-              body: TabBarView(
-                controller: _tabController,
-                children: [VideoList(), VideoList(), VideoList(), VideoList()],
-              ))),
+              body: Text('MC'))),
     );
   }
 
