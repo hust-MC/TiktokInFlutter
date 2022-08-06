@@ -3,10 +3,14 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../server_data.dart';
-import '../video_model.dart';
+import '../model/video_model.dart';
 
-class VideoController {
+abstract class VideoController {
   List<VideoModel>? dataList;
+
+  String get spKey;
+
+  String get videoData;
 
   Future<void> init() async {
     // 首先判断一级缓存——即内存中是否有数据
@@ -25,7 +29,7 @@ class VideoController {
   // 从服务端拉取视频Json字符串类型表示的视频数据
   Future<List<VideoModel>> fetchVideoData() async {
     var sp = await SharedPreferences.getInstance();
-    var modelStr = sp.getString("videoModel");
+    var modelStr = sp.getString(spKey);
     if (modelStr != null && modelStr.isNotEmpty) {
       // 二级缓存中找到数据，直接使用
       print('MOOC- 2/use sp data');
@@ -37,7 +41,7 @@ class VideoController {
       return list.map((e) => VideoModel.fromJson(e)).toList();
     } else {
       // 二级缓存未找到数据，走三级缓存
-      var list = jsonDecode(ServerData.fetchDataFromServer()) as List<dynamic>;
+      var list = jsonDecode(videoData) as List<dynamic>;
       var sp = await SharedPreferences.getInstance();
       sp.setString('videoModel', ServerData.fetchDataFromServer());
       print('MOOC- 3/fetch data from server');

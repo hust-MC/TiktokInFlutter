@@ -1,13 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_module/widget/video_page/controller/private_controller.dart';
+import 'package:flutter_module/widget/video_page/controller/public_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_module/page/mine_page/mine_page_controller.dart';
 import 'package:flutter_module/widget/text_count.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../widget/t_image.dart';
-import '../../widget/video_page/video_list.dart';
+import '../../widget/video_page/controller/favorite_controller.dart';
+import '../../widget/video_page/controller/mark_controller.dart';
+import '../../widget/video_page/widget/video_list.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -69,7 +73,12 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
               },
               body: TabBarView(
                 controller: _tabController,
-                children: [VideoList(), VideoList(), VideoList(), VideoList()],
+                children: [
+                  VideoList(PublicController()),
+                  VideoList(PrivateController()),
+                  VideoList(MarkController()),
+                  VideoList(FavoriteController())
+                ],
               ))),
     );
   }
