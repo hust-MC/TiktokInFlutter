@@ -3,14 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_module/page/mine_page/mine_page_controller.dart';
-import 'package:flutter_module/page/video_list/video_list_controller.dart';
 import 'package:flutter_module/widget/text_count.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../widget/t_image.dart';
 import '../../widget/title_page_view/title_page_controller.dart';
 import '../../widget/title_page_view/title_page_view.dart';
-import '../video_list/video_list.dart';
+import '../../widget/video_page/video_list.dart';
 
 class MinePage extends StatefulWidget {
   MinePage({Key? key}) : super(key: key);
@@ -66,11 +65,14 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                     ),
                     bottom: TabBar(
                         controller: _tabController,
-                        tabs: [Tab(text: "aaa"), Tab(text: "bbb"), Tab(text: "ccc"), Tab(text: "ddd")]),
+                        tabs: [Tab(text: '作品'), Tab(text: "私密"), Tab(text: '收藏'), Tab(text: "喜欢")]),
                   )
                 ];
               },
-              body: Text('MC'))),
+              body: TabBarView(
+                controller: _tabController,
+                children: [VideoList(), VideoList(), VideoList(), VideoList()],
+              ))),
     );
   }
 
@@ -151,58 +153,5 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                 _controller.onTapAvatar();
               }))
     ]);
-  }
-
-  //banner下面的按钮
-  Widget _buildButtons() {
-    return Expanded(
-      child: Row(
-        children: <Widget>[
-          _buildButtonItem(Icons.chat, "xxxx"),
-          Image.asset("assets/images/phone_flow_chart_arrow.png", height: 8),
-          _buildButtonItem(Icons.pages, "xxxx"),
-          Image.asset("assets/images/phone_flow_chart_arrow.png", height: 8),
-          _buildButtonItem(Icons.phone_android, "xxxx"),
-          Image.asset("assets/images/phone_flow_chart_arrow.png", height: 8),
-          _buildButtonItem(Icons.print, "xxxx"),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildButtonItem(IconData icon, String text) {
-    return Expanded(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(icon, size: 28.0),
-        Container(
-          margin: EdgeInsets.only(top: 8.0),
-          child: Text(text, style: TextStyle(color: Color(0xff999999), fontSize: 12)),
-        )
-      ],
-    ));
-  }
-
-  Widget _buildTabBarBg() {
-    return Container(
-      //TabBar圆角背景颜色
-      height: 50,
-      child: ClipRRect(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-          child: Container(color: Colors.white)),
-    );
-  }
-
-  Widget _buildListView(String s) {
-    return ListView.separated(
-        itemCount: 20,
-        separatorBuilder: (BuildContext context, int index) => Divider(
-              color: Colors.grey,
-              height: 1,
-            ),
-        itemBuilder: (BuildContext context, int index) {
-          return Container(color: Colors.white, child: ListTile(title: Text("$s第$index 个条目")));
-        });
   }
 }

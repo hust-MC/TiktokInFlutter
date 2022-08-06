@@ -17,6 +17,8 @@ class $AssetImageGen {
   AssetGenImage get img1 => const AssetGenImage('asset/image/img_1.png');
   AssetGenImage get lock => const AssetGenImage('asset/image/lock.png');
   AssetGenImage get play => const AssetGenImage('asset/image/play.png');
+  AssetGenImage get playCenter =>
+      const AssetGenImage('asset/image/play_center.png');
 }
 
 class $AssetVideoGen {
