@@ -26,7 +26,7 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
   late ScrollController _scrollViewController;
   late TabController _tabController;
 
-  static const image_height = 120.0;
+  static const image_height = 138.5;
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                   SliverAppBar(
                     pinned: true,
                     floating: true,
-                    expandedHeight: 400,
+                    expandedHeight: 420,
                     flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.pin,
                       background: Stack(children: [
@@ -72,16 +72,15 @@ class _MinePageState extends State<MinePage> with SingleTickerProviderStateMixin
                             padding: EdgeInsets.only(top: image_height - 4),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Color(0xfffefdfd),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                                  color: Color(0xfffefdfd),
+                                  borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
                               alignment: Alignment.centerLeft,
                               //头部整个背景颜色
                               height: double.infinity,
                               child: _buildBanner(),
                             )),
                         Padding(
-                            padding: EdgeInsets.only(top: 96, left: 19),
+                            padding: EdgeInsets.only(top: 114, left: 19),
                             child: GestureDetector(
                                 child: Obx(() => TImage(_controller.avatarUrl.value, shape: Shape.CIRCLE, radius: 40)),
                                 onTap: () async {
