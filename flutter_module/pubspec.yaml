@@ -38,9 +38,10 @@ dependencies:
   json_annotation: ^4.5.0
   shared_preferences: ^2.0.15
   player:
-    git:
-      url: 'https://github.com/hust-MC/flutter_player'
-      ref: master
+    path: ../../mooc/MC/mc/player
+#    git:
+#      url: 'https://github.com/hust-MC/flutter_player'
+#      ref: master
 
 dev_dependencies:
   flutter_test:

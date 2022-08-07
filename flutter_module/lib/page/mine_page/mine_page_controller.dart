@@ -17,8 +17,11 @@ class MinePageController extends GetxController {
   final key_avatar = "keyAvatar";
   final key_background = "keyBackground";
 
-  get uid => '慕课号：$_uid';
-  get videoCount => 31;
+  String get uid => '慕课号：$_uid';
+
+  String get likeCount => '23万';
+  String get focusCount => '85334';
+  String get followCount => '23531';
 
   MinePageController() {
     SharedPreferences.getInstance().then((sp) {

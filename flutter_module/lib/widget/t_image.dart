@@ -24,17 +24,27 @@ class TImage extends StatelessWidget {
           return Image.file(File(url), fit: fit, width: width, height: height);
         }
       case Shape.CIRCLE:
+        var backgroundImage;
         if (url.contains('asset')) {
-          return CircleAvatar(
-            radius: radius,
-            backgroundImage: AssetImage(url),
-          );
+          backgroundImage = AssetImage(url);
         } else {
-          return CircleAvatar(
-            radius: radius,
-            backgroundImage: FileImage(File(url)),
-          );
+          backgroundImage = FileImage(File(url));
         }
+        return Container(
+          width: radius != null ? radius! * 2 + 8: null,
+          height: radius != null ? radius! * 2 + 8: null,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: backgroundImage,
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(50.0)),
+            border: Border.all(
+              color: Color(0xfffefdfd),
+              width: 4,
+            ),
+          ),
+        );
       default:
         if (url.contains('asset')) {
           return Image.asset(url, fit: fit, width: width ?? double.infinity, height: height);

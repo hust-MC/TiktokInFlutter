@@ -1,3 +1,4 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:player/player.dart';
 import 'package:player/video_view.dart';
@@ -36,13 +37,16 @@ class _VideoListState extends State<VideoList> {
                   child: widget.controller.dataList == null
                       ? Container() // 加载提示或者骨架屏
                       : Stack(
-                    alignment: Alignment.bottomLeft,
+                          alignment: Alignment.bottomLeft,
                           children: [
                             AbsorbPointer(
                                 absorbing: true,
-                                child: VideoView(Player()
-                                  ..setCommonDataSource(widget.controller.dataList![index].url,
-                                      type: SourceType.net, autoPlay: true))),
+                                child: VideoView(
+                                    Player()
+                                      ..setLoop(0)
+                                      ..setCommonDataSource(widget.controller.dataList![index].url,
+                                          type: SourceType.net, autoPlay: true),
+                                    fit: FijkFit.cover)),
                             Padding(
                                 padding: EdgeInsets.only(bottom: 10, left: 15),
                                 child: Row(children: [
