@@ -36,9 +36,9 @@ class _VideoListState extends State<VideoList> {
               return GestureDetector(
                   child: widget.controller.dataList == null
                       ? Container() // 加载提示或者骨架屏
-                      : Stack(
-                          alignment: Alignment.bottomLeft,
-                          children: [
+                      : Container(
+                          decoration: BoxDecoration(border: Border.all(color: Color(0xfffef5ff), width: 1)),
+                          child: Stack(alignment: Alignment.bottomLeft, children: [
                             AbsorbPointer(
                                 absorbing: true,
                                 child: VideoView(
@@ -57,8 +57,7 @@ class _VideoListState extends State<VideoList> {
                                     style: TextStyle(color: Colors.white, fontSize: 12),
                                   )
                                 ]))
-                          ],
-                        ),
+                          ])),
                   onTap: () async =>
                       await router.push(name: MCRouter.playerPage, arguments: widget.controller.dataList![index].url));
             }));
