@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_module/mc_router.dart';
+import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
 MCRouter router = MCRouter();
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // GetX改造步骤：1、修改MaterialApp成GetMaterialApp
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.

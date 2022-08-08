@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_module/mine_page.dart';
+import 'package:flutter_module/page/mine_page/mine_page.dart';
 
 import 'gen/assets.gen.dart';
 import 'main.dart';

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_module/mc_router.dart';
+import 'package:flutter_module/page/mine_page/mine_page_controller.dart';
 import 'package:flutter_module/widget/TImage.dart';
+import 'package:get/get.dart';
 
-import 'gen/assets.gen.dart';
-import 'main.dart';
+import '../../main.dart';
 
 class MinePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MinePageState();
 }
 
-// 正常需要用Controller来管理数据，当前临时方案
-String backgroundUrl = Assets.image.defaultPhoto.path;
-
 class _MinePageState extends State<MinePage> {
   static const image_height = 138.5;
+
+  final _controller = Get.put(MinePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +23,14 @@ class _MinePageState extends State<MinePage> {
           width: double.infinity,
           height: image_height,
           child: GestureDetector(
-              child: TImage(backgroundUrl, fit: BoxFit.cover),
+              child: TImage(_controller.backgroundUrl, fit: BoxFit.cover),
               onTap: () async {
                 var fileUrl = await router
-                    .push(name: MCRouter.photoPicker, arguments: {MCRouter.key_url: backgroundUrl});
+                    .push(name: MCRouter.photoPicker, arguments: {MCRouter.key_url: _controller.backgroundUrl});
 
                 // 增加类型判断
                 if (fileUrl is String) {
-                  backgroundUrl = fileUrl;
-                  setState(() {});
+                  _controller.backgroundUrl = fileUrl;
                 }
               }))
     ]);
