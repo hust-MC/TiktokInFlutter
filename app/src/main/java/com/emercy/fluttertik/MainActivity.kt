@@ -25,7 +25,6 @@ class MainActivity : FragmentActivity() {
     }
     private val messageFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "message", "/message")
-
     }
     private val mineFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "mine", "/mine")

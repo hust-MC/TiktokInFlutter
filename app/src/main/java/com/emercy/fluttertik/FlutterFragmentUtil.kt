@@ -8,7 +8,7 @@ import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin
-import io.flutter.plugins.videoplayer.VideoPlayerPlugin
+//import io.flutter.plugins.videoplayer.VideoPlayerPlugin
 
 /**
  * @author Emercy
@@ -38,7 +38,7 @@ object FlutterFragmentUtil {
             setMethodChannels(context, flutterEngine)
         }
         flutterEngine.plugins.add(SharedPreferencesPlugin())
-        flutterEngine.plugins.add(VideoPlayerPlugin())
+//        flutterEngine.plugins.add(VideoPlayerPlugin())
         return FlutterFragment.withCachedEngine(id).shouldAttachEngineToActivity(true)
             .build() as FlutterFragment
     }

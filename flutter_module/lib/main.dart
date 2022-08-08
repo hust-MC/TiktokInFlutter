@@ -1,24 +1,39 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_module/mc_route.dart';
-
-void main() => runApp(MyApp());
+import 'package:flutter_module/mc_router.dart';
+import 'package:path_provider/path_provider.dart';
 
 MCRouter router = MCRouter();
 
+void main() {
+  runApp(const MyApp());
+
+  init();
+}
+
+String sdcardPath = '/storage/emulated/0/Android/data/com.example.mc/files';
+
+init() {
+  // 初始化页面路由，获取Native传递的参数，放入路由表
+  print('MOOC- init route is : ${window.defaultRouteName}');
+  router.push(name: window.defaultRouteName);
+
+  // 初始化sdcard目录
+  getExternalStorageDirectory().then((value) {
+    sdcardPath = value?.path ?? sdcardPath;
+    // Player.setCachePath(sdcardPath);
+    print('MOOC- sdcard path: $sdcardPath');
+  });
+}
+
 class MyApp extends StatelessWidget {
-  MyApp() {
-    print('Home route is : ${window.defaultRouteName}');
-    router.push(name: window.defaultRouteName);
-  }
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -37,5 +52,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
 }
