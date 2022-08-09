@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_module/widget/TImage.dart';
+import 'package:flutter_module/widget/t_image.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../main.dart';
