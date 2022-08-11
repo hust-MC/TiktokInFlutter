@@ -5,12 +5,14 @@ import 'package:flutter_module/page/mine_page/mine_page.dart';
 
 import 'gen/assets.gen.dart';
 import 'main.dart';
+import 'page/player_page/player_page.dart';
 import 'widget/photo_picker.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {
   static const String minePage = '/mine';
   static const String photoPicker = '/photo_picker';
+  static const String playerPage = '/player';
 
   static const String key = 'key';
   static const String value = 'value';
@@ -98,6 +100,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         }
 
         page = PhotoPickerPage(url ?? Assets.image.defaultPhoto.keyName);
+        break;
+      case playerPage:
+        page = PlayerPage(routeSettings.arguments?.toString() ?? '');
         break;
       default:
         page = const Scaffold();
