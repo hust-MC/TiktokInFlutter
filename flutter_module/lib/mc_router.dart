@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_module/page/mine_page/mine_page.dart';
 
 import 'gen/assets.gen.dart';
-import 'main.dart';
+import 'page/camera_page/camera_page.dart';
 import 'page/player_page/player_page.dart';
 import 'widget/photo_picker.dart';
 
@@ -13,6 +13,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String minePage = '/mine';
   static const String photoPicker = '/photo_picker';
   static const String playerPage = '/player';
+  static const String cameraPage = '/camera';
 
   static const String key = 'key';
   static const String value = 'value';
@@ -103,6 +104,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         break;
       case playerPage:
         page = PlayerPage(routeSettings.arguments?.toString() ?? '');
+        break;
+      case cameraPage:
+        page = CameraPage();
         break;
       default:
         page = const Scaffold();

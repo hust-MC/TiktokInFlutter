@@ -1,7 +1,9 @@
 package com.emercy.fluttertik
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -29,6 +31,9 @@ class MainActivity : FragmentActivity() {
     private val mineFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "mine", "/mine")
     }
+    private val cameraFragment by lazy {
+        FlutterFragmentUtil.createFlutterFragment(this, "camera", "/camera")
+    }
     private var currentFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +47,10 @@ class MainActivity : FragmentActivity() {
         bt_friend.setOnClickListener { showPage(it) }
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
+        bt_add.setOnClickListener {
+            Log.d("MCLOG", "print add")
+            supportFragmentManager.beginTransaction().add(R.id.fragment_camera, cameraFragment).commit()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,11 +70,14 @@ class MainActivity : FragmentActivity() {
                 return
             }
 
-            bt_home.setTextColor(getColor(R.color.bottom_button_color))
-            bt_friend.setTextColor(getColor(R.color.bottom_button_color))
-            bt_message.setTextColor(getColor(R.color.bottom_button_color))
-            bt_mine.setTextColor(getColor(R.color.bottom_button_color))
-            (view as Button).setTextColor(getColor(R.color.white))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                bt_home.setTextColor(getColor(R.color.bottom_button_color))
+                bt_friend.setTextColor(getColor(R.color.bottom_button_color))
+                bt_message.setTextColor(getColor(R.color.bottom_button_color))
+                bt_mine.setTextColor(getColor(R.color.bottom_button_color))
+                (view as Button).setTextColor(getColor(R.color.white))
+            }
+
 
             if (it.isAdded) {
                 supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
