@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_module/channel_util.dart';
+import 'package:flutter_module/page/camera_page/camera_page_controller.dart';
 import 'package:flutter_module/widget/t_image.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../gen/assets.gen.dart';
@@ -13,52 +14,33 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-  CameraController? controller;
-  late List<CameraDescription> cameras;
-  var cameraIndex = 0;
-  bool flash = false;
+  late CameraPageController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = CameraPageController();
 
-    availableCameras().then((value) {
-      cameras = value;
-      _initCameraController();
-    });
-  }
-
-  void _initCameraController() {
-    controller = CameraController(cameras[cameraIndex], ResolutionPreset.medium);
-    controller?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
+    _controller.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Stack(children: [
-      controller == null || !controller!.value.isInitialized
-          ? Container(color: Colors.black)
-          : Container(
-              width: double.infinity, height: double.infinity, child: CameraPreview(controller!)),
+      Obx(() =>
+          _controller.cameraController == null || !_controller.cameraController!.value.isInitialized
+              ? Container(color: Colors.black)
+              : Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: CameraPreview(_controller.cameraController!))),
       Padding(
           padding: EdgeInsets.only(top: 38, left: 19),
           child: GestureDetector(
               child: TImage(Assets.image.close.path, height: 18, width: 18),
               onTap: () {
-                print('MCLOG   pop');
-                ChannelUtil.closeCamera();
+                _controller.onCloseTap();
               })),
       Align(
           alignment: Alignment.topRight,
@@ -68,26 +50,25 @@ class _CameraPageState extends State<CameraPage> {
                 GestureDetector(
                     child: _buildIcon(Assets.image.rotate.path, '翻转'),
                     onTap: () {
-                      cameraIndex = cameraIndex == 0 ? 1 : 0;
-                      _initCameraController();
+                      _controller.onSwitchCamera();
                     }),
                 SizedBox(height: 16),
                 GestureDetector(
                     child: _buildIcon(Assets.image.clock.path, '倒计时'),
                     onTap: () {
                       Future.delayed(Duration(seconds: 3), () {
-                        _takeAndUpload();
+                        _controller.takePhotoAndUpload();
                       });
                     }),
                 SizedBox(height: 16),
                 GestureDetector(
-                  child: _buildIcon(
-                      flash ? Assets.image.flashOn.path : Assets.image.flashOff.path, '闪光灯'),
+                  child: Obx(() => _buildIcon(
+                      _controller.flash ? Assets.image.flashOn.path : Assets.image.flashOff.path,
+                      '闪光灯')),
                   onTap: () {
-                    controller?.setFlashMode(flash ? FlashMode.off : FlashMode.always);
-                    setState(() {
-                      flash = !flash;
-                    });
+                    _controller.cameraController
+                        ?.setFlashMode(_controller.flash ? FlashMode.off : FlashMode.always);
+                    _controller.flash = !_controller.flash;
                   },
                 )
               ]))),
@@ -133,7 +114,7 @@ class _CameraPageState extends State<CameraPage> {
                         border: new Border.all(width: 4, color: Colors.white),
                       )),
                   onTap: () {
-                    _takeAndUpload();
+                    _controller.takePhotoAndUpload();
                   }))),
     ]));
   }
@@ -147,10 +128,5 @@ class _CameraPageState extends State<CameraPage> {
             style: TextStyle(color: Colors.white, fontSize: 10, decoration: TextDecoration.none))
       ],
     );
-  }
-
-  void _takeAndUpload() {
-    controller?.takePicture();
-    print("MOOC, upload");
   }
 }
