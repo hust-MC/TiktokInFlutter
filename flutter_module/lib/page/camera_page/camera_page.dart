@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_module/channel_util.dart';
 import 'package:flutter_module/widget/t_image.dart';
 
 import '../../gen/assets.gen.dart';
@@ -46,7 +47,12 @@ class _CameraPageState extends State<CameraPage> {
               width: double.infinity, height: double.infinity, child: CameraPreview(controller!)),
       Padding(
           padding: EdgeInsets.only(top: 38, left: 19),
-          child: TImage(Assets.image.close.path, height: 18, width: 18)),
+          child: GestureDetector(
+              child: TImage(Assets.image.close.path, height: 18, width: 18),
+              onTap: () {
+                print('MCLOG   pop');
+                ChannelUtil.closeCamera();
+              })),
       Align(
           alignment: Alignment.topRight,
           child: Padding(

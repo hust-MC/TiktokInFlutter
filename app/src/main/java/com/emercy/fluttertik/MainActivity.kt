@@ -17,6 +17,7 @@ class MainActivity : FragmentActivity() {
 
     companion object {
         const val ENGINE_ID = "engineID"
+        const val TAG = "MainActivity"
     }
 
     private val homeFragment by lazy {
@@ -48,8 +49,13 @@ class MainActivity : FragmentActivity() {
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
         bt_add.setOnClickListener {
-            Log.d("MCLOG", "print add")
-            supportFragmentManager.beginTransaction().add(R.id.fragment_camera, cameraFragment).commit()
+            Log.d(TAG, "Start camera fragment")
+            if(cameraFragment.isAdded) {
+                supportFragmentManager.beginTransaction().show(cameraFragment).commit()
+            } else {
+                supportFragmentManager.beginTransaction().add(R.id.fragment_camera, cameraFragment)
+                    .commit()
+            }
         }
     }
 
@@ -78,7 +84,6 @@ class MainActivity : FragmentActivity() {
                 (view as Button).setTextColor(getColor(R.color.white))
             }
 
-
             if (it.isAdded) {
                 supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
             } else {
@@ -87,6 +92,11 @@ class MainActivity : FragmentActivity() {
             }
             currentFragment = it
         }
+    }
+
+    fun closeCamera() {
+        Log.d(TAG, "close camera")
+        supportFragmentManager.beginTransaction().remove(cameraFragment).commit()
     }
 
     fun hideBottomButton(hide: Boolean) {

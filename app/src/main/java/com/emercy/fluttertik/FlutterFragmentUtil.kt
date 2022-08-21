@@ -18,6 +18,7 @@ import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin
 object FlutterFragmentUtil {
 
     private const val HIDE_BOTTOM = "hideBottomBar"
+    private const val CLOSE_CAMERA = "closeCamera"
     private const val TAG = "FlutterFragmentUtil"
 
     fun createFlutterFragment(
@@ -48,10 +49,16 @@ object FlutterFragmentUtil {
             flutterEngine.dartExecutor, "CommonChannel"
         ).setMethodCallHandler { call, result ->
             Log.i(TAG, "method: ${call.method}, argument: ${call.arguments}")
+            Log.d("MCLOG", "native : $call")
 
             when (call.method) {
                 HIDE_BOTTOM -> {
                     (context as MainActivity).hideBottomButton(call.argument<Boolean>("hide") == true)
+                }
+                CLOSE_CAMERA -> {
+                    Log.d("MCLOG", "channel : close camera")
+
+                    (context as MainActivity).closeCamera()
                 }
                 else -> result.notImplemented()
             }
