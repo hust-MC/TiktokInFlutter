@@ -29,6 +29,11 @@ class MainActivity : FragmentActivity() {
     private val mineFragment by lazy {
         FlutterFragmentUtil.createFlutterFragment(this, "mine", "/mine")
     }
+    private val cameraFragment by lazy {
+        // 通过懒加载创建Flutter Fragment(Android Flutter容器)
+        FlutterFragmentUtil.createFlutterFragment(this, "camera", "/camera")
+    }
+
     private var currentFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +47,11 @@ class MainActivity : FragmentActivity() {
         bt_friend.setOnClickListener { showPage(it) }
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
+        bt_add.setOnClickListener {
+            // 添加至页面中
+            supportFragmentManager.beginTransaction().add(R.id.camera_container, cameraFragment)
+                .commit()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -84,5 +94,10 @@ class MainActivity : FragmentActivity() {
         bt_add.visibility = visible
         bt_message.visibility = visible
         bt_mine.visibility = visible
+    }
+
+    fun closeCamera() {
+        // 移除Flutter容器
+        supportFragmentManager.beginTransaction().remove(cameraFragment).commit()
     }
 }

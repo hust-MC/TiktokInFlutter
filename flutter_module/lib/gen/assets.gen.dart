@@ -18,12 +18,28 @@ class $AssetImageGen {
   /// File path: asset/image/avatar.jpg
   AssetGenImage get avatar => const AssetGenImage('asset/image/avatar.jpg');
 
+  /// File path: asset/image/clock.png
+  AssetGenImage get clock => const AssetGenImage('asset/image/clock.png');
+
+  /// File path: asset/image/close.png
+  AssetGenImage get close => const AssetGenImage('asset/image/close.png');
+
   /// File path: asset/image/default_photo.jpg
   AssetGenImage get defaultPhoto =>
       const AssetGenImage('asset/image/default_photo.jpg');
 
   /// File path: asset/image/edit.png
   AssetGenImage get edit => const AssetGenImage('asset/image/edit.png');
+
+  /// File path: asset/image/flash_off.png
+  AssetGenImage get flashOff =>
+      const AssetGenImage('asset/image/flash_off.png');
+
+  /// File path: asset/image/flash_on.png
+  AssetGenImage get flashOn => const AssetGenImage('asset/image/flash_on.png');
+
+  /// File path: asset/image/gallery.png
+  AssetGenImage get gallery => const AssetGenImage('asset/image/gallery.png');
 
   /// File path: asset/image/img.png
   AssetGenImage get img => const AssetGenImage('asset/image/img.png');
@@ -36,6 +52,9 @@ class $AssetImageGen {
 
   /// File path: asset/image/play.png
   AssetGenImage get play => const AssetGenImage('asset/image/play.png');
+
+  /// File path: asset/image/rotate.png
+  AssetGenImage get rotate => const AssetGenImage('asset/image/rotate.png');
 }
 
 class $AssetVideoGen {

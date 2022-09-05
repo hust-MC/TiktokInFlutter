@@ -18,6 +18,7 @@ import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin
 object FlutterFragmentUtil {
 
     private const val HIDE_BOTTOM = "hideBottomBar"
+    private const val CLOSE_CAMERA = "closeCamera"
     private const val TAG = "FlutterFragmentUtil"
 
     fun createFlutterFragment(
@@ -52,6 +53,9 @@ object FlutterFragmentUtil {
             when (call.method) {
                 HIDE_BOTTOM -> {
                     (context as MainActivity).hideBottomButton(call.argument<Boolean>("hide") == true)
+                }
+                CLOSE_CAMERA -> {
+                    (context as MainActivity).closeCamera()
                 }
                 else -> result.notImplemented()
             }
