@@ -1,7 +1,9 @@
 package com.emercy.fluttertik
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -15,6 +17,7 @@ class MainActivity : FragmentActivity() {
 
     companion object {
         const val ENGINE_ID = "engineID"
+        const val TAG = "MainActivity"
     }
 
     private val homeFragment by lazy {
@@ -48,9 +51,14 @@ class MainActivity : FragmentActivity() {
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
         bt_add.setOnClickListener {
-            // 添加至页面中
-            supportFragmentManager.beginTransaction().add(R.id.camera_container, cameraFragment)
-                .commit()
+            Log.d(TAG, "Start camera fragment")
+            if(cameraFragment.isAdded) {
+                supportFragmentManager.beginTransaction().show(cameraFragment).commit()
+            } else {
+                // 添加至页面中
+                supportFragmentManager.beginTransaction().add(R.id.camera_container, cameraFragment)
+                    .commit()
+            }
         }
     }
 
@@ -97,6 +105,8 @@ class MainActivity : FragmentActivity() {
     }
 
     fun closeCamera() {
+        Log.d(TAG, "close camera")
+
         // 移除Flutter容器
         supportFragmentManager.beginTransaction().remove(cameraFragment).commit()
     }
